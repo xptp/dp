@@ -1,0 +1,25 @@
+@import "variables.scss";
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: Cuprum, sans-serif;
+  color: black;
+  // color: white;
+}
+
+.App {
+  max-width: $maxscrin;
+  margin: auto;
+  text-align: center;
+  position: relative;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+li {
+  list-style-type: none;
+}

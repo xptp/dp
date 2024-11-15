@@ -1,0 +1,57 @@
+@import "variables.scss";
+
+.main-nav {
+  position: absolute;
+  z-index: 1;
+  // width: $maxscrin;
+  width: 100%;
+  // background-color: $mainColor;
+  // background-color: hsl(0, 90%, 12%);
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.6) 0, transparent 100%);
+  color: #f3f2e9;
+
+  text-align: center;
+  justify-content: center;
+}
+.nav-info {
+  margin: 0 auto;
+  max-width: $scrinWidth;
+  display: block;
+  box-sizing: border-box;
+
+  .h-name {
+    margin: 0 auto;
+    padding-top: 15px;
+    font-size: 40px;
+    width: 300px;
+  }
+
+  .address {
+    clear: both;
+    float: left;
+  }
+}
+
+.nav-bar {
+  margin: 0 auto;
+  max-width: $scrinWidth;
+  margin-top: 15px;
+  text-align: right;
+  padding: 10px;
+
+  .n-div {
+    display: inline-block;
+    text-shadow: rgb(7, 7, 7) 0.3px 0 5px;
+  }
+
+  .n-link {
+    font-size: 28px;
+    font-weight: bolder;
+    padding: 10px;
+  }
+
+  .n-link:hover {
+    color: $btnColor;
+    transition: 0.5s;
+  }
+}

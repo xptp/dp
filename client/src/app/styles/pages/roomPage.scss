@@ -1,0 +1,48 @@
+@import "../variables.scss";
+.roomPage {
+  padding-top: 129px;
+  align-items: center;
+  justify-content: center;
+  max-width: $scrinWidth;
+  margin: 0 auto;
+  display: block;
+}
+
+.main-swiper-room {
+  // text-align: center;
+  margin: 30px auto 20px auto;
+  // width: 100%;
+  width: 1000px;
+  // height: 500px;
+}
+
+.room-content {
+  h1 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  text-align: left;
+
+  .desc {
+    font-size: 25px;
+    margin-top: 20px;
+  }
+  .places {
+    font-size: 23px;
+  }
+}
+.btn {
+  margin-top: 20px;
+  padding: 8px 11px;
+  bottom: 15px;
+  font-size: 23px;
+  border-radius: 4px;
+  color: white;
+  background-color: $btnColor;
+}
+.btn:hover {
+  -webkit-box-shadow: 4px 4px 1px -3px rgba(0, 0, 0, 0.57);
+  -moz-box-shadow: 4px 4px 1px -3px rgba(0, 0, 0, 0.57);
+  box-shadow: 4px 4px 1px -3px rgba(0, 0, 0, 0.57);
+  transition: 0.2s;
+}

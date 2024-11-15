@@ -1,0 +1,78 @@
+[
+  {
+    "id": 0,
+    "number": 1,
+    "name": "Стандартый однокомнотный номер с дуспальной кроватью",
+    "shortDescription": "Короткое описание номера",
+    "description": "вффф фф ф фывфы фы вфывф ывфыв фыв фыввффф фф ф фывфы фы вфывф ывфыв фыв фыввффф фф ф фывфы фы вфывф ывфыв фыв фыввффф фф ф фывфы фы вфывф ывфыв фыв фыввффф фф ф фывфы фы вфывф ывфыв фыв фыввффф фф ф фывфы фы вфывф ывфыв фыв фыв",
+    "type": "standart",
+    "places": 2,
+    "available": true,
+    "images": [
+      {
+        "id": 0,
+        "img": "https://www.hotelcontractbeds.co.uk/media/3183/hotel-room.jpg",
+        "active": true
+      },
+      {
+        "id": 1,
+        "img": "https://cf.bstatic.com/xdata/images/hotel/max1024x768/22462873.jpg?k=3a3fc9cd108c2f26119e1a8700385f0c173f007dfa853e8147b31b36f58b9ab3&o=&hp=1",
+        "active": false
+      }
+    ]
+  },
+  {
+    "id": 1,
+    "number": 2,
+    "name": "Большой двухкомнотный номер на пять человек",
+    "shortDescription": "Короткое описание номера",
+    "description": "Каждый такой номер в нашем отеле представляет собой гармоничное сочетание стильного интерьера, удобной мебели и необходимых современных удобств Пространство эргономично разделено на спальную и гостиную зоны. В спальной зоне расположены две односпальных кровати (или одна двуспальная по желанию гостя) с ортопедическими матрасами, которые обеспечат вам комфортный отдых Гардеробная зона оснащена шкафом для одежды и обуви, что позволит вам аккуратно разместить свои вещи. Для вашего отдыха и развлечения в номере установлен телевизор с большим выбором каналов. Для вашего отдыха и развлечения в номере установлен телевизор с большим выбором каналов. Все ванные комнаты оборудованы душевыми кабинами, а для гостей предоставлен фен, уютные халаты и тапочки",
+    "type": "standart+",
+    "places": 5,
+    "available": false,
+    "images": [
+      {
+        "id": 0,
+        "img": "https://img.freepik.com/free-photo/small-hotel-room-interior-with-double-bed-and-bathroom_1262-12489.jpg?w=1380&t=st=1727779251~exp=1727779851~hmac=2076447b6fe6947ab4e91185ecdbad2811321e6e77d9c50ff160357599b92be2",
+        "active": true
+      },
+      {
+        "id": 1,
+        "img": "https://traveling.by/files/images/2017/12/8244da585a46e16b4340f2252b527c32-thumb-940x0.jpg",
+        "active": false
+      },
+      {
+        "id": 2,
+        "img": "https://traveling.by/files/images/2017/12/5757cf45d3bb094932bf8ddcc544e4b6-thumb-940x0.jpg",
+        "active": false
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "number": 3,
+    "name": "Номер Люкс, три комнаты, панорамные окна",
+    "shortDescription": "Короткое описание номера",
+    "description": "lordsadasdasdasd asd asd asd asd asda sda sdaslordsadasdasdasd asd asd asd asd asda sda sdaslordsadasdasdasd asd asd asd asd asda sda sdaslordsadasdasdasd asd asd asd asd asda sda sdaslordsadasdasdasd asd asd asd asd asda sda sdas",
+    "type": "Lux",
+    "places": 4,
+    "available": true,
+    "images": [
+      {
+        "id": 0,
+        "img": "https://traveling.by/files/images/2017/12/9cac361508edcc0f3b13c0316f7807a7-thumb-940x0.jpg",
+        "active": true
+      },
+      {
+        "id": 1,
+        "img": "https://img.freepik.com/free-photo/hotel-room-at-a-luxury-resort_53876-138105.jpg?w=996&t=st=1727779267~exp=1727779867~hmac=1a3bdf3f03c162247a126d16af91b2735db80300bc4654e9c13bd4bb1123e3b1",
+        "active": false
+      },
+      {
+        "id": 2,
+        "img": "https://img.freepik.com/free-photo/small-hotel-bedroom-with-white-walls-and-panoramic-window_1262-12488.jpg?w=740&t=st=1727779302~exp=1727779902~hmac=cdc1688ff366fd29172f55f8f825bc541de277e3ff93caa8b26ac41105cf044d",
+        "active": false
+      }
+    ]
+  }
+]

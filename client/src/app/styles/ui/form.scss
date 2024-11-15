@@ -1,0 +1,12 @@
+.div-height {
+  padding-top: 129px;
+  height: 100vh;
+}
+.container {
+  width: 100%;
+
+  padding-right: calc(var(--bs-gutter-x) * 0.5);
+  padding-left: calc(var(--bs-gutter-x) * 0.5);
+  margin-right: auto;
+  margin-left: auto;
+}

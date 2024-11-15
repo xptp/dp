@@ -1,0 +1,191 @@
+@import "../variables.scss";
+.main-page {
+  align-items: center;
+  justify-content: center;
+  // max-width: $scrinWidth;
+  max-width: $maxscrin;
+  margin: 0 auto;
+}
+.main-img {
+  background: url("https://img.geliophoto.com/krasnayapolyana/00_krasnayapolyana.jpg");
+  background-size: cover;
+  background-position: center;
+  max-width: $maxscrin;
+  height: 1000px;
+
+  position: relative;
+  // bottom: 124px;
+
+  .main-content {
+    max-width: $scrinWidth;
+    margin: 0 auto;
+    color: white;
+
+    .descript-img {
+      font-size: 88px;
+      text-align: left;
+      padding-top: 200px;
+      -webkit-text-stroke: 1px #000000;
+      max-width: 900px;
+    }
+  }
+}
+
+.section {
+  max-width: $scrinWidth;
+  margin: 100px auto 0 auto;
+}
+
+.section-hotel {
+  display: flex;
+  text-align: left;
+
+  img {
+    width: 600px;
+    text-align: left;
+    transform: scaleX(-1);
+  }
+  p {
+    font-size: 35px;
+    margin: auto 50px;
+  }
+}
+.section-pool {
+  display: flex;
+  text-align: left;
+
+  img {
+    width: 700px;
+  }
+  p {
+    font-size: 35px;
+    margin: auto 50px;
+  }
+}
+.section-restaurant {
+  display: flex;
+  text-align: left;
+
+  img {
+    width: 700px;
+  }
+  p {
+    font-size: 35px;
+    margin: auto 50px;
+  }
+}
+// .section-reviews {
+//   display: flex;
+
+//   .reviews-yandex {
+//     max-width: $scrinWidth;
+//     margin: 0 auto;
+//     width: 560px;
+//     height: 600px;
+//     overflow: hidden;
+//     position: relative;
+
+//     iframe {
+//       width: 100%;
+//       height: 100%;
+//       border: 1px solid #e6e6e6;
+//       border-radius: 8px;
+//       box-sizing: border-box;
+//     }
+//     a {
+//       box-sizing: border-box;
+//       text-decoration: none;
+//       color: #b3b3b3;
+//       font-size: 10px;
+//       font-family: YS Text, sans-serif;
+//       padding: 0 20px;
+//       position: absolute;
+//       bottom: 8px;
+//       width: 100%;
+//       text-align: center;
+//       left: 0;
+//       overflow: hidden;
+//       text-overflow: ellipsis;
+//       display: block;
+//       max-height: 14px;
+//       white-space: nowrap;
+//       padding: 0 16px;
+//       box-sizing: border-box;
+//     }
+//   }
+// }
+
+.map-contact {
+  max-width: $scrinWidth;
+  margin: 0 auto;
+  display: flex;
+  margin-top: 150px;
+
+  .contact {
+    position: relative;
+    text-align: left;
+    // width: 50%;
+    .test {
+      width: 100%;
+      margin: 110px 0 0 70px;
+      background-color: rgb(240, 238, 235);
+      .contact-address {
+        font-size: 24px;
+        padding: 20px 30px 0 50px;
+        margin-bottom: 30px;
+      }
+      .index {
+        padding-left: 50px;
+        font-size: 22px;
+        text-decoration: underline;
+      }
+      .contact-phone {
+        margin-top: 50px;
+        font-size: 25px;
+        line-height: 30px;
+        padding-left: 50px;
+        text-decoration: underline;
+      }
+      .contact-emale {
+        padding-left: 50px;
+        text-decoration: underline;
+        font-size: 25px;
+        margin-top: 40px;
+        padding-bottom: 50px;
+      }
+    }
+  }
+
+  .map {
+    position: relative;
+    overflow: hidden;
+    margin: 0 20px 0 0;
+
+    .a-one {
+      color: #eee;
+      font-size: 12px;
+      position: absolute;
+      top: 0px;
+    }
+    .a-two {
+      color: #eee;
+      font-size: 12px;
+      position: absolute;
+      top: 14px;
+    }
+    // .a-three {
+    //   color: #eee;
+    //   font-size: 12px;
+    //   position: absolute;
+    //   top: 28px;
+    // }
+    .iframe {
+      position: relative;
+    }
+  }
+}
+
+.block {
+  width: 100%;
+  height: 500px;
+}
