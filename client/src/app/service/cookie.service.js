@@ -16,10 +16,6 @@ export function setTokens({
   Cookies.set(TOKEN_KEY, accessToken);
   Cookies.set(REFRESH_KEY, refreshToken);
   Cookies.set(EXPIRES_KEY, expiresDate);
-  // console.log("userId", userId);
-  // console.log("accessToken", accessToken);
-  // console.log("refreshToken", refreshToken);
-  // console.log("expiresIn", expiresIn);
 }
 
 export function getAccessToken() {

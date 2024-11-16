@@ -1,17 +1,16 @@
 import axios from "axios";
+import config from "../config.json";
 
+const httpAuth = axios.create({
+  baseURL: config.apiEndpoint,
+  params: {
+    key: process.env.REACT_APP_FIREBASE_KEY,
+  },
+});
 const roomService = {
   getAllRooms: async () => {
     try {
-      let config = {
-        headers: {
-          a: "token",
-        },
-      };
-      const response = await axios.get(
-        "http://localhost:8080/api/rooms",
-        config
-      );
+      const response = await httpAuth.get("/rooms");
 
       return response.data;
     } catch (error) {
@@ -21,7 +20,7 @@ const roomService = {
   },
   getById: async (id) => {
     try {
-      const response = await axios.get(`http://localhost:8080/api/rooms/${id}`);
+      const response = await httpAuth.get(`/rooms/${id}`);
 
       return response.data;
     } catch (error) {

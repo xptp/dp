@@ -1,10 +1,7 @@
 import { createAction, createSlice } from "@reduxjs/toolkit";
 import authService from "../service/auth.service";
 import cookieService from "../service/cookie.service";
-import { createBrowserHistory } from "history";
 import { generetaAuthError } from "../utils/generateAuthError";
-
-const history = createBrowserHistory();
 
 const initialState = cookieService.getAccessToken()
   ? {
