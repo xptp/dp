@@ -3,52 +3,51 @@ import axios from "axios";
 import cookieService from "../../service/cookie.service";
 
 const BookingForm = ({ roomId }) => {
-  const [startDate, setStartDate] = useState("");
-  const [endDate, setEndDate] = useState("");
+  const [checkInDate, setCheckInDate] = useState("");
+  const [checkOutDate, setCheckOutDate] = useState("");
 
-  const handleBooking = async (e) => {
-    e.preventDefault();
+  const handleBooking = async () => {
     try {
-      const token = cookieService.getAccessToken();
-      if (!token) {
-        alert("No token found. Please log in.");
-        return;
-      }
-      const response = await axios.post(
-        "http://localhost:8080/api/bookings",
-        { roomId, startDate, endDate },
+      const accessToken = cookieService.getAccessToken();
+      console.log(accessToken);
+
+      console.log(checkInDate);
+      console.log(checkOutDate);
+      console.log(roomId);
+
+      await axios.post(
+        "http://localhost:8080/api/book/book",
+        {
+          roomId,
+          checkInDate,
+          checkOutDate,
+        },
         {
           headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${accessToken}`,
           },
         }
       );
       alert("Booking successful!");
     } catch (error) {
-      if (error.response && error.response.status === 401) {
-        alert("Unauthorized. Please log in again.");
-      } else {
-        alert("Booking failed!");
-      }
+      alert("Booking failed: " + error.response.data.message);
     }
   };
 
   return (
-    <form onSubmit={handleBooking}>
+    <div>
       <input
         type="date"
-        value={startDate}
-        onChange={(e) => setStartDate(e.target.value)}
-        required
+        value={checkInDate}
+        onChange={(e) => setCheckInDate(e.target.value)}
       />
       <input
         type="date"
-        value={endDate}
-        onChange={(e) => setEndDate(e.target.value)}
-        required
+        value={checkOutDate}
+        onChange={(e) => setCheckOutDate(e.target.value)}
       />
-      <button type="submit">Book Room</button>
-    </form>
+      <button onClick={handleBooking}>Book</button>
+    </div>
   );
 };
 

@@ -1,41 +1,44 @@
 const express = require("express");
 const router = express.Router();
-// const authMiddleware = require('../middlewares/authMiddleware'); // Путь к вашему middleware
-const authMiddleware = require("../middleware/auth.middleware"); // Путь к вашему middleware
 const Booking = require("../models/Booking");
+const authMiddleware = require("../middleware/auth.middleware");
 
-// Создание бронирования
+// Маршрут для бронирования номера
 router.post("/", authMiddleware, async (req, res) => {
+  console.log("Booking request:", req.body);
+
+  const { roomId, checkInDate, checkOutDate } = req.body;
+  const userId = req.user.id;
+
   try {
-    const { roomId, startDate, endDate } = req.body;
     const booking = new Booking({
-      user: req.user._id,
+      user: userId,
       room: roomId,
-      startDate,
-      endDate,
+      checkInDate,
+      checkOutDate,
     });
     await booking.save();
     res.status(201).json(booking);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(400).json({ message: error.message });
   }
 });
 
-// Отмена бронирования
-router.delete("/:id", authMiddleware, async (req, res) => {
+// Маршрут для отмены бронирования
+router.delete("/cancel/:bookingId", authMiddleware, async (req, res) => {
+  const { bookingId } = req.params;
+  const userId = req.user.id;
+
   try {
-    const booking = await Booking.findById(req.params.id);
-    if (!booking) {
-      return res.status(404).json({ error: "Booking not found" });
-    }
-    if (booking.user.toString() !== req.user._id.toString()) {
-      return res.status(403).json({ error: "Unauthorized" });
+    const booking = await Booking.findById(bookingId);
+    if (booking.user.toString() !== userId) {
+      return res.status(403).json({ message: "Forbidden" });
     }
     booking.status = "cancelled";
     await booking.save();
     res.status(200).json(booking);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(400).json({ message: error.message });
   }
 });
 

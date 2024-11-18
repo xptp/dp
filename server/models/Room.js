@@ -1,4 +1,3 @@
-// const mongoose = require("mongoose");
 const { Schema, model } = require("mongoose");
 
 const schema = new Schema({
@@ -10,7 +9,7 @@ const schema = new Schema({
   places: Number,
   images: Array,
   available: Boolean,
+  bookings: [{ type: Schema.Types.ObjectId, ref: "Booking" }],
 });
 
 module.exports = model("Room", schema);
-// id: Number,

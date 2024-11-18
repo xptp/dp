@@ -1,3 +1,32 @@
+const tokenService = require("../services/token.service");
+
+module.exports = (req, res, next) => {
+  if (req.method === "OPTIONS") {
+    return next();
+  }
+
+  try {
+    const authHeader = req.headers.authorization;
+    if (!authHeader) {
+      return res.status(401).json({ message: "Unauthorized" });
+    }
+
+    const token = authHeader.split(" ")[1];
+    if (!token) {
+      return res.status(401).json({ message: "Unauthorized" });
+    }
+
+    const data = tokenService.validateAccess(token);
+    if (!data) {
+      return res.status(401).json({ message: "Unauthorized" });
+    }
+
+    req.user = data;
+    next();
+  } catch (e) {
+    res.status(401).json({ message: "Unauthorized" });
+  }
+};
 // const tokenService = require("../services/token.service");
 
 // module.exports = (req, res, next) => {
@@ -8,7 +37,7 @@
 //   try {
 //     const token = req.headers.authorization.split(" ")[1];
 //     if (!token) {
-//       return res.status(401).json({ message: "Unauthorized" });
+//       return res.status(401).json({ message: "Unautorized" });
 //     }
 
 //     const data = tokenService.validateAccess(token);
@@ -20,32 +49,6 @@
 
 //     next();
 //   } catch (e) {
-//     console.error("Authentication error:", e);
-//     res.status(401).json({ message: "Unauthorized" });
+//     res.status(401).json({ message: "Unautorized" });
 //   }
 // };
-const tokenService = require("../services/token.service");
-
-module.exports = (req, res, next) => {
-  if (req.method === "OPTIONS") {
-    return next();
-  }
-
-  try {
-    const token = req.headers.authorization.split(" ")[1];
-    if (!token) {
-      return res.status(401).json({ message: "Unautorized" });
-    }
-
-    const data = tokenService.validateAccess(token);
-
-    req.user = data;
-    if (!data) {
-      return res.status(401).json({ message: "Unauthorized" });
-    }
-
-    next();
-  } catch (e) {
-    res.status(401).json({ message: "Unautorized" });
-  }
-};
