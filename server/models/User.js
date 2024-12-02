@@ -5,6 +5,7 @@ const schema = new Schema(
     name: { type: String },
     email: { type: String, required: true, unique: true, lowercase: true },
     password: { type: String },
+    // admin: { type: Boolean, required: true },
     admin: { type: Boolean },
     bookings: [{ type: Schema.Types.ObjectId, ref: "Booking" }],
   },

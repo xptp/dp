@@ -8,7 +8,11 @@ router.post("/", authMiddleware, async (req, res) => {
   console.log("Booking request:", req.body);
 
   const { roomId, checkInDate, checkOutDate } = req.body;
-  const userId = req.user.id;
+  console.log("req.user:", req.user); // Логируем req.user
+  const userId = req.user?.id;
+  if (!userId) {
+    return res.status(401).json({ message: "User not authenticated" });
+  }
 
   try {
     const booking = new Booking({
@@ -37,6 +41,25 @@ router.delete("/cancel/:bookingId", authMiddleware, async (req, res) => {
     booking.status = "cancelled";
     await booking.save();
     res.status(200).json(booking);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+});
+
+router.get("/", authMiddleware, async (req, res) => {
+  try {
+    const bookings = await Booking.find({ user: req.user.id });
+    res.status(200).json(bookings);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+});
+
+router.get("/available", async (req, res) => {
+  try {
+    const bookedRoomIds = await Booking.distinct("room");
+    const availableRooms = await Room.find({ _id: { $nin: bookedRoomIds } });
+    res.status(200).json(availableRooms);
   } catch (error) {
     res.status(400).json({ message: error.message });
   }

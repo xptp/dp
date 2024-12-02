@@ -21,8 +21,15 @@ router.patch("/:userId", auth, async (req, res) => {
 
 router.get("/", auth, async (req, res) => {
   try {
-    console.log(req.user);
-    const list = await User.find();
+    _id = req.query._id;
+    let list = [];
+    if (_id) {
+      list = await User.findOne({ _id: _id });
+    } else {
+      console.log("33");
+      list = await User.find();
+    }
+
     res.status(200).send(list);
   } catch (e) {
     res

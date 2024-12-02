@@ -2,8 +2,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import configFile from "../config.json";
 import authService from "./auth.service";
-
-import localStorageService from "./localStorage.service";
+import cookieService from "./cookie.service";
 
 const http = axios.create({
   baseURL: configFile.apiEndpoint,
@@ -11,8 +10,8 @@ const http = axios.create({
 
 http.interceptors.request.use(
   async function (config) {
-    const expiresDate = localStorageService.getTokenExpiresDate();
-    const refreshToken = localStorageService.getRefreshToken();
+    const expiresDate = cookieService.getTokenExpiresDate();
+    const refreshToken = cookieService.getRefreshToken();
     const isExpired = refreshToken && expiresDate < Date.now();
 
     if (configFile.isFireBase) {
@@ -22,7 +21,7 @@ http.interceptors.request.use(
       if (isExpired) {
         const data = await authService.refresh();
 
-        localStorageService.setTokens({
+        cookieService.setTokens({
           refreshToken: data.refresh_token,
           idToken: data.id_token,
           expiresIn: data.expires_in,
@@ -30,16 +29,16 @@ http.interceptors.request.use(
         });
       }
       ///............................................................
-      const accessToken = localStorageService.getAccessToken();
+      const accessToken = cookieService.getAccessToken();
       if (accessToken) {
         config.params = { ...config.params, auth: accessToken };
       }
     } else {
       if (isExpired) {
         const data = await authService.refresh();
-        localStorageService.setTokens(data);
+        cookieService.setTokens(data);
       }
-      const accessToken = localStorageService.getAccessToken();
+      const accessToken = cookieService.getAccessToken();
       if (accessToken) {
         config.headers = {
           ...config.headers,

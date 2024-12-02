@@ -1,14 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../../styles/navBar.scss";
-import { useDispatch } from "react-redux";
-import { logoutUser } from "../../store/userSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchUser, logoutUser } from "../../store/userSlice";
 import cookieService from "../../service/cookie.service";
 
 const NavBar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const access = cookieService.getAccessToken();
+
+  const user = useSelector((state) => state.user.user);
+  const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
+  // console.log(user);
+  useEffect(() => {
+    if (isLoggedIn && !user) {
+      dispatch(fetchUser());
+    }
+  }, [dispatch, isLoggedIn, user]);
 
   const handleLogout = () => {
     dispatch(logoutUser());
@@ -40,10 +49,10 @@ const NavBar = () => {
             ТЕст
           </Link>
         </div>
-        {access ? (
+        {access && user?.admin ? (
           <div className="n-div">
             <Link className="n-link" to="admin">
-              Админ
+              ВСЕ НОМЕРА
             </Link>
           </div>
         ) : null}

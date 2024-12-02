@@ -64,6 +64,7 @@ import SwiperComponent from "../../ui/swiperComponent";
 import "../../../styles/pages/roomPage.scss";
 import roomService from "../../../service/roomService.service";
 import BookingForm from "../../ui/booingForm";
+import CancelBooking from "../../ui/bookengDelForm";
 
 const RoomPage = () => {
   const [room, setRoom] = useState(null);
@@ -95,6 +96,7 @@ const RoomPage = () => {
     <div className="roomPage">
       <SwiperComponent objImages={room.images} clName={"main-swiper-room"} />
       <BookingForm roomId={_id} />
+      <CancelBooking />
       <div className="room-content">
         <h1>{room.name}</h1>
         <div className="places">Количество спальных мест: {room.places}</div>

@@ -7,5 +7,5 @@ const store = configureStore({
   },
 });
 
-console.log("Initial state:", store.getState());
+// console.log("Initial state:", store.getState());
 export default store;

@@ -6,15 +6,21 @@ import { useDispatch } from "react-redux";
 import { signUp } from "../../store/userSlice";
 
 const RegisterForm = () => {
-  const [data, setData] = useState({ email: "", password: "" });
+  const [data, setData] = useState({ email: "", password: "", admin: false });
   const [errors, setErrors] = useState({});
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
 
+  // const handleChange = ({ target }) => {
+  //   setData((prevState) => ({ ...prevState, [target.name]: target.value }));
+  // };
   const handleChange = ({ target }) => {
-    setData((prevState) => ({ ...prevState, [target.name]: target.value }));
+    setData((prevState) => ({
+      ...prevState,
+      [target.name]: target.type === "checkbox" ? target.checked : target.value,
+    }));
   };
   const validatorConfig = useMemo(
     () => ({
@@ -68,6 +74,8 @@ const RegisterForm = () => {
 
       if (!isValid) return;
       const redirect = location.state ? location.state.from.pathname : "/";
+      console.log(data);
+
       dispatch(signUp({ payload: data, redirect, navigate }));
     } catch (error) {
       setErrors({ common: error.message });
@@ -93,6 +101,16 @@ const RegisterForm = () => {
           onChange={handleChange}
           error={errors.password}
         />
+        <div className="form-check">
+          <input
+            className="form-check-input"
+            type="checkbox"
+            name="admin"
+            checked={data.admin}
+            onChange={handleChange}
+          />
+          <label className="form-check-label">Admin</label>
+        </div>
         <button className="but-form" type="submit" disabled={!isValid}>
           submit
         </button>

@@ -16,7 +16,7 @@ const BookingForm = ({ roomId }) => {
       console.log(roomId);
 
       await axios.post(
-        "http://localhost:8080/api/book/book",
+        "http://localhost:8080/api/book/",
         {
           roomId,
           checkInDate,

@@ -4,9 +4,13 @@ import { Link } from "react-router-dom";
 import SwiperComponent from "../../ui/swiperComponent";
 import Loader from "../../ui/loader";
 import roomService from "../../../service/roomService.service";
+// import { useSelector } from "react-redux";
+// import { getCurrentUserData } from "../../../store/userSlice";
 const RoomsPage = () => {
   const [rooms, setRooms] = useState();
   const [load, setLoad] = useState(false);
+  // const currentUser = useSelector(getCurrentUserData());
+  // console.log("currentUser", currentUser);
 
   useEffect(() => {
     fetchRooms();

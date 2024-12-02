@@ -35,7 +35,9 @@ router.post("/signUp", [
         });
       }
 
-      const { email, password } = req.body;
+      const { email, password, admin } = req.body;
+      console.log("aaaaa", req.body);
+
       const normalizedEmail = email.toLowerCase();
 
       const existingUser = await User.findOne({ email: normalizedEmail });
@@ -112,7 +114,9 @@ router.post("/signInWithPassword", [
       const tokens = tokenService.generate({ id: existingUser.id });
       await tokenService.save(existingUser.id, tokens.refreshToken);
 
-      res.status(200).send({ ...tokens, userId: existingUser.id });
+      res
+        .status(200)
+        .send({ ...tokens, userId: existingUser.id, user: existingUser });
     } catch (e) {
       res
         .status(500)
