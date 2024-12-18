@@ -40,9 +40,13 @@ const authService = {
   logout: async () => {
     try {
       const refreshToken = cookieService.getRefreshToken();
-      await httpAuth.post("logout", { refresh_token: refreshToken });
+      const userId = cookieService.getUserId();
+      if (refreshToken) {
+        await httpAuth.post("logout", { refresh_token: refreshToken });
+      } else if (userId) {
+        await httpAuth.post("logout", { userId });
+      }
       cookieService.removeAuthData();
-      // return { message: "Logged out successfully" };
     } catch (error) {
       console.error("Error logout:", error);
       throw error;

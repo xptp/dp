@@ -146,17 +146,22 @@ router.post("/token", async (req, res) => {
       .json({ message: "На сервере произошла ошибка. Попробуйте позже" });
   }
 });
+
 router.post("/logout", async (req, res) => {
   try {
-    const { refresh_token: refreshToken } = req.body;
-    const data = tokenService.validateRefresh(refreshToken);
-    const dbToken = await tokenService.findToken(refreshToken);
-
-    if (!data || !dbToken || data.id !== dbToken?.user?.toString()) {
-      return res.status(401).json({ message: "Unauthorized" });
+    const { refresh_token: refreshToken, userId } = req.body;
+    if (refreshToken) {
+      const data = tokenService.validateRefresh(refreshToken);
+      const dbToken = await tokenService.findToken(refreshToken);
+      if (!data || !dbToken || data.id !== dbToken?.user?.toString()) {
+        return res.status(401).json({ message: "Unauthorized" });
+      }
+      await tokenService.removeToken(refreshToken);
+    } else if (userId) {
+      await tokenService.removeTokenByUserId(userId);
+    } else {
+      return res.status(400).json({ message: "Bad Request" });
     }
-
-    await tokenService.removeToken(refreshToken);
 
     res.status(200).send({ message: "Logged out successfully" });
   } catch (e) {

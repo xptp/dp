@@ -55,6 +55,9 @@ class TokenService {
       return null;
     }
   }
+  async removeTokenByUserId(userId) {
+    return await Token.deleteMany({ user: userId });
+  }
 }
 
 module.exports = new TokenService();

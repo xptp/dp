@@ -8,21 +8,34 @@ import cookieService from "../../service/cookie.service";
 const NavBar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const refresh = cookieService.getRefreshToken();
   const access = cookieService.getAccessToken();
 
   const user = useSelector((state) => state.user.user);
   const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
-  // console.log(user);
+
   useEffect(() => {
+    console.log(user);
+    console.log(isLoggedIn);
+
     if (isLoggedIn && !user) {
       dispatch(fetchUser());
+    } else if (!access && refresh) {
+      dispatch(fetchUser());
+    } else if (!access && !refresh) {
+      dispatch(logoutUser());
     }
-  }, [dispatch, isLoggedIn, user]);
+  }, [dispatch, access, refresh, isLoggedIn, user]);
 
   const handleLogout = () => {
-    dispatch(logoutUser());
-    cookieService.removeAuthData();
-    navigate("/");
+    dispatch(logoutUser())
+      .then(() => {
+        cookieService.removeAuthData();
+        navigate("/");
+      })
+      .catch((error) => {
+        console.error("Error logging out:", error);
+      });
   };
 
   return (
@@ -69,12 +82,6 @@ const NavBar = () => {
             </Link>
           </div>
         )}
-
-        {/* <div className="n-div">
-          <Link className="n-link" to="/">
-            Админ
-          </Link>
-        </div> */}
       </div>
     </div>
   );
