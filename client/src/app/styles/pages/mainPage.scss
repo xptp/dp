@@ -20,6 +20,7 @@
     max-width: $scrinWidth;
     margin: 0 auto;
     color: white;
+    position: relative;
 
     .descript-img {
       font-size: 88px;
@@ -27,6 +28,15 @@
       padding-top: 200px;
       -webkit-text-stroke: 1px #000000;
       max-width: 900px;
+    }
+
+    .address {
+      position: absolute;
+      right: 30px;
+      top: 150px;
+      // bottom: -400px;
+      // bottom: ;
+      text-shadow: rgb(7, 7, 7) 0.3px 0 5px;
     }
   }
 }
@@ -128,7 +138,8 @@
     .test {
       width: 100%;
       margin: 110px 0 0 70px;
-      background-color: rgb(240, 238, 235);
+      background-color: $mainColor;
+      color: #eee;
       .contact-address {
         font-size: 24px;
         padding: 20px 30px 0 50px;
@@ -140,13 +151,27 @@
         text-decoration: underline;
       }
       .contact-phone {
-        margin-top: 50px;
         font-size: 25px;
+        margin-top: 50px;
         line-height: 30px;
         padding-left: 50px;
         text-decoration: underline;
       }
-      .contact-emale {
+      .btn-call {
+        padding: 10px 20px;
+        background-color: #fdfdfd;
+        transition: 0.2s ease;
+        color: $mainColor;
+        font-size: 22px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      .contact button:hover {
+        background-color: $btnColor;
+      }
+      .contact-email {
         padding-left: 50px;
         text-decoration: underline;
         font-size: 25px;

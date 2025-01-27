@@ -1,12 +1,12 @@
 @import "../variables.scss";
-
 .rooms-page {
   padding-top: 129px;
   align-items: center;
   justify-content: center;
   max-width: $scrinWidth;
   margin: 0 auto;
-  // position: relative;
+
+  position: relative;
 }
 
 .rooms-description {
@@ -17,6 +17,13 @@
     text-align: center;
   }
 }
+
+.sort-btn-container {
+  position: relative;
+  width: 100%;
+  text-align: right;
+}
+
 .room {
   width: 100%;
   height: 400px;

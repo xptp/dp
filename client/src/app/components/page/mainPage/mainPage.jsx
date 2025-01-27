@@ -16,12 +16,18 @@ const MainPage = () => {
     }
   }, [location]);
 
+  const handleCall = () => {
+    window.location.href = "tel:+1234567890";
+  };
   return (
     <div className="main-page">
       <div className="main-img">
         <div className="main-content">
           <div className="descript-img">
             КОМФОРТ И УЮТ В ОТЕЛЕ <br /> SNOW PEAK
+          </div>
+          <div className="address">
+            Красная Поляна, Краснодарский край, 354392
           </div>
         </div>
       </div>
@@ -71,17 +77,21 @@ const MainPage = () => {
         <div className="reviews"></div>
       </div> */}
       <div className="map-contact">
-        <div className="contact">
+        <div className="contact" id="contact">
           <div className="test">
             <div className="contact-address">
-              Краснодарский край п. г. т. Красная Поляна этаж 1,
-              <br /> ул. Защитников Кавказа, 29
+              Краснодарский край п. г. т. Красная Поляна <br /> этаж 1, ул.
+              Защитников Кавказа, 29
             </div>
             <div className="index">354392</div>
             <div className="contact-phone">
-              +7 800 888 88 88 <br /> +7 700 777 77 77
+              <div className="contact">
+                <button onClick={handleCall} className="btn-call">
+                  +7 800 888 88 88
+                </button>
+              </div>
             </div>
-            <div className="contact-emale">KakoytoEmail@mail.ru</div>
+            <div className="contact-email">KakoytoEmail@mail.ru</div>
           </div>
         </div>
         <div className="map">

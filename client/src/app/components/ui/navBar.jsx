@@ -16,7 +16,10 @@ const NavBar = () => {
   const access = cookieService.getAccessToken();
 
   const location = useLocation();
-  const isHomePage = location.pathname === "/" || location.pathname === "/home";
+  const isHomePage =
+    location.pathname === "/" ||
+    location.pathname === "/home" ||
+    location.pathname === "/login";
   // console.log(isHomePage);
 
   const user = useSelector((state) => state.user.user);
@@ -46,20 +49,27 @@ const NavBar = () => {
       });
   };
 
-  const handleScroll = (event) => {
+  const handleScroll = (event, type) => {
     event.preventDefault();
+
+    const sectionId = type === "hotel" ? "targetSection" : "contact";
+
     if (location.pathname === "/home") {
-      const targetSection = document.getElementById("targetSection");
+      const targetSection = document.getElementById(sectionId);
       if (targetSection) {
         targetSection.scrollIntoView({ behavior: "smooth" });
       }
     } else {
-      window.location.href = "/home#targetSection";
+      window.location.href = `/home#${sectionId}`;
     }
   };
 
   return (
-    <div className="navbar-main-container">
+    <div
+      className={`navbar-main-container ${
+        isHomePage ? "navbar-home" : "navbar-not-home"
+      }`}
+    >
       <div className="navbar-width">
         {!isHomePage ? (
           <h2 className="logo">
@@ -74,13 +84,25 @@ const NavBar = () => {
             <Link to="home">Главная</Link>
           </span>
           <span className="link-btn">
-            <Link to="rooms">Номера</Link>
-          </span>
-          <span className="link-btn">
-            <a href="/home#targetSection" onClick={handleScroll}>
+            <a
+              href="/home#targetSection"
+              onClick={(e) => handleScroll(e, "hotel")}
+            >
               Отель
             </a>
           </span>
+          <span className="link-btn">
+            <Link to="rooms">Забронировать</Link>
+          </span>
+          <span className="link-btn">
+            <a
+              href="/home#targetSection"
+              onClick={(e) => handleScroll(e, "contact")}
+            >
+              Контакты
+            </a>
+          </span>
+
           <span className="link-btn">
             {access && user?.admin ? <Link to="admin">Админ</Link> : null}
           </span>
@@ -107,9 +129,3 @@ const NavBar = () => {
 };
 
 export default NavBar;
-
-{
-  /* <div className="address">
-          Красная Поляна, Краснодарский край, 354392
-        </div> */
-}

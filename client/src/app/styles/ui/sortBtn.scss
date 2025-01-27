@@ -1,0 +1,36 @@
+@import "../variables.scss";
+
+.sort-button-container {
+  position: relative;
+  display: inline-block;
+}
+
+.sort-button {
+  padding: 10px;
+  background-color: $mainColor;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.sort-options {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: white;
+  border: 1px solid #ccc;
+  z-index: 1000;
+}
+
+.sort-options button {
+  width: 100%;
+  padding: 10px;
+  background-color: white;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+}
+
+.sort-options button:hover {
+  background-color: #f0f0f0;
+}

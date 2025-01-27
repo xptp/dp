@@ -4,22 +4,38 @@ import { Link } from "react-router-dom";
 import SwiperComponent from "../../ui/swiperComponent";
 import Loader from "../../ui/loader";
 import roomService from "../../../service/roomService.service";
-// import { useSelector } from "react-redux";
-// import { getCurrentUserData } from "../../../store/userSlice";
+import SortBtn from "../../ui/sortBtn";
+
 const RoomsPage = () => {
-  const [rooms, setRooms] = useState();
+  const [rooms, setRooms] = useState([]);
   const [load, setLoad] = useState(false);
-  // const currentUser = useSelector(getCurrentUserData());
-  // console.log("currentUser", currentUser);
 
   useEffect(() => {
     fetchRooms();
   }, []);
+  useEffect(() => {
+    console.log(rooms);
+  }, [rooms]);
 
   async function fetchRooms() {
+    setLoad(true);
     const r = await roomService.getAllRooms();
     setRooms(r);
+    setLoad(false);
   }
+
+  const handleSort = (type) => {
+    const sorted = [...rooms].sort((a, b) => {
+      if (a.type === type && b.type !== type) {
+        return -1;
+      }
+      if (a.type !== type && b.type === type) {
+        return 1;
+      }
+      return 0;
+    });
+    setRooms(sorted);
+  };
 
   return (
     <div className="rooms-page">
@@ -46,6 +62,10 @@ const RoomsPage = () => {
           в неповторимом стильном интерьере. В здании отеля имеется лифт.
         </p>
       </div>
+      <div className="sort-btn-container">
+        <SortBtn onSort={handleSort} />
+      </div>
+
       {rooms ? (
         rooms.map((o) => (
           <div key={o._id} className="room">
