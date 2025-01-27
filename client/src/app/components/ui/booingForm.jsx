@@ -1,16 +1,46 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import cookieService from "../../service/cookie.service";
+import { addDays, format } from "date-fns";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 const BookingForm = ({ roomId }) => {
-  const [checkInDate, setCheckInDate] = useState("");
-  const [checkOutDate, setCheckOutDate] = useState("");
+  const [checkInDate, setCheckInDate] = useState(new Date());
+  const [checkOutDate, setCheckOutDate] = useState(addDays(new Date(), 1));
+  const [minDate, setMinDate] = useState(new Date());
+  const [excludeDates, setExcludeDates] = useState([]);
+
+  useEffect(() => {
+    const fetchExcludeDates = async () => {
+      try {
+        const accessToken = cookieService.getAccessToken();
+        const response = await axios.get(
+          `http://localhost:8080/api/book/get-booked-dates`,
+          {
+            params: {
+              roomId,
+            },
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+            },
+          }
+        );
+        setExcludeDates(
+          response.data.bookedDates.map((date) => new Date(date))
+        );
+      } catch (error) {
+        alert("Error fetching booked dates: " + error.response.data.message);
+      }
+    };
+
+    fetchExcludeDates();
+  }, [roomId]);
 
   const handleBooking = async () => {
     try {
       const accessToken = cookieService.getAccessToken();
       console.log(accessToken);
-
       console.log(checkInDate);
       console.log(checkOutDate);
       console.log(roomId);
@@ -19,8 +49,8 @@ const BookingForm = ({ roomId }) => {
         "http://localhost:8080/api/book/",
         {
           roomId,
-          checkInDate,
-          checkOutDate,
+          checkInDate: format(checkInDate, "yyyy-MM-dd"),
+          checkOutDate: format(checkOutDate, "yyyy-MM-dd"),
         },
         {
           headers: {
@@ -36,15 +66,19 @@ const BookingForm = ({ roomId }) => {
 
   return (
     <div>
-      <input
-        type="date"
-        value={checkInDate}
-        onChange={(e) => setCheckInDate(e.target.value)}
+      <DatePicker
+        selected={checkInDate}
+        onChange={(date) => setCheckInDate(date)}
+        minDate={minDate}
+        excludeDates={excludeDates}
+        inline
       />
-      <input
-        type="date"
-        value={checkOutDate}
-        onChange={(e) => setCheckOutDate(e.target.value)}
+      <DatePicker
+        selected={checkOutDate}
+        onChange={(date) => setCheckOutDate(date)}
+        minDate={minDate}
+        excludeDates={excludeDates}
+        inline
       />
       <button onClick={handleBooking}>Book</button>
     </div>

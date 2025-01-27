@@ -1,8 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
 import "../../../styles/pages/mainPage.scss";
 
 const MainPage = () => {
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.hash) {
+      const id = location.hash.replace("#", "");
+      const element = document.getElementById(id);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  }, [location]);
+
   return (
     <div className="main-page">
       <div className="main-img">
@@ -12,7 +25,7 @@ const MainPage = () => {
           </div>
         </div>
       </div>
-      <div className="section section-hotel">
+      <div className="section section-hotel" id="targetSection">
         <img
           src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/09/80/6f/85/caption.jpg?w=1200&h=-1&s=1"
           alt=""

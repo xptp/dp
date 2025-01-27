@@ -78,8 +78,8 @@ const LoginForm = () => {
   };
 
   return (
-    <div className="container">
-      <form onSubmit={handleSubmit}>
+    <div className="form">
+      <form onSubmit={handleSubmit} className="container-form">
         <TextField
           label="Электронная почта"
           type="text"
@@ -97,8 +97,8 @@ const LoginForm = () => {
           error={errors.password}
         />
         {errors.common && <div className="error">{errors.common}</div>}
-        <button type="submit" disabled={!isValid}>
-          Submit
+        <button className="but-form" type="submit" disabled={!isValid}>
+          Войти
         </button>
       </form>
     </div>

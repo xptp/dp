@@ -83,8 +83,8 @@ const RegisterForm = () => {
   };
 
   return (
-    <div className="d-form">
-      <form className="form" onSubmit={handleSubmit}>
+    <div className="form">
+      <form className="container-form" onSubmit={handleSubmit}>
         <TextField
           label="Электронная почта"
           type="text"
@@ -101,9 +101,9 @@ const RegisterForm = () => {
           onChange={handleChange}
           error={errors.password}
         />
-        <div className="form-check">
+        <div className="form-checkbox">
           <input
-            className="form-check-input"
+            className="checkbox-input"
             type="checkbox"
             name="admin"
             checked={data.admin}
@@ -112,7 +112,7 @@ const RegisterForm = () => {
           <label className="form-check-label">Admin</label>
         </div>
         <button className="but-form" type="submit" disabled={!isValid}>
-          submit
+          Войти
         </button>
       </form>
     </div>

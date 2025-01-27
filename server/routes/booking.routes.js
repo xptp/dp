@@ -45,7 +45,7 @@ router.delete("/cancel/:bookingId", authMiddleware, async (req, res) => {
     res.status(400).json({ message: error.message });
   }
 });
-
+// Маршрут для получениявсех бронирований пользователя
 router.get("/", authMiddleware, async (req, res) => {
   try {
     const bookings = await Booking.find({ user: req.user.id });
@@ -54,12 +54,36 @@ router.get("/", authMiddleware, async (req, res) => {
     res.status(400).json({ message: error.message });
   }
 });
-
+// Маршрут для получения доступных номеров
 router.get("/available", async (req, res) => {
   try {
     const bookedRoomIds = await Booking.distinct("room");
     const availableRooms = await Room.find({ _id: { $nin: bookedRoomIds } });
     res.status(200).json(availableRooms);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+});
+// Новый маршрут для получения забронированных дат для конкретного номера
+router.get("/get-booked-dates", async (req, res) => {
+  const { roomId } = req.query;
+
+  if (!roomId) {
+    return res.status(400).json({ message: "roomId is required" });
+  }
+
+  try {
+    const bookings = await Booking.find({ room: roomId });
+    const bookedDates = bookings.flatMap((booking) => {
+      const dates = [];
+      let currentDate = new Date(booking.checkInDate);
+      while (currentDate <= new Date(booking.checkOutDate)) {
+        dates.push(currentDate.toISOString().split("T")[0]);
+        currentDate.setDate(currentDate.getDate() + 1);
+      }
+      return dates;
+    });
+    res.status(200).json({ bookedDates });
   } catch (error) {
     res.status(400).json({ message: error.message });
   }

@@ -8,7 +8,6 @@ import Login from "./components/layouts/login";
 import RoomPage from "./components/page/roomPage";
 // import Footer from "./components/ui/footer";
 import AdminPage from "./components/page/adminPage";
-import TestBookingPage from "./components/page/text";
 function App() {
   // const user = useSelector((state) => state.user);
   // const dispatch = useDispatch();
@@ -19,7 +18,6 @@ function App() {
         <Route index element={<MainPage />} />
         <Route path="home" element={<MainPage />} />
         <Route path="rooms" element={<RoomsPage />} />
-        <Route path="booking" element={<TestBookingPage />} />
         <Route path="rooms/:_id" element={<RoomPage />} />
         <Route path="login/:type?" element={<Login />} />
         <Route path="admin" element={<AdminPage />} />

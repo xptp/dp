@@ -1,12 +1,155 @@
-.div-height {
-  padding-top: 129px;
-  height: 100vh;
-}
-.container {
-  width: 100%;
+@import "../variables.scss";
+// .div-height {
+//   padding-top: 129px;
+//   height: 100vh;
+// }
+// .container {
+//   width: 100%;
 
-  padding-right: calc(var(--bs-gutter-x) * 0.5);
-  padding-left: calc(var(--bs-gutter-x) * 0.5);
-  margin-right: auto;
-  margin-left: auto;
+//   padding-right: calc(var(--bs-gutter-x) * 0.5);
+//   padding-left: calc(var(--bs-gutter-x) * 0.5);
+//   margin-right: auto;
+//   margin-left: auto;
+// }
+
+.div-main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  // background-color: #f8f8f8;
+  // background: url("https://img.geliophoto.com/krasnayapolyana/00_krasnayapolyana.jpg");
+  background: url("https://s14.stc.all.kpcdn.net/russia/wp-content/uploads/2021/11/novyj-god-zima-krasnaya-polyana-unsplash.jpg");
+  // background: url("https://s13.stc.all.kpcdn.net/russia/wp-content/uploads/2019/07/Roza-Hutor.jpg");
+  background-size: cover;
+  background-position: center;
+  max-width: $maxscrin;
+  height: 1000px;
+
+  position: relative;
+}
+
+.main-form {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 6px;
+  transition: 0.5s ease;
+  width: 300px;
+  // height: 350px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.container-form {
+  display: flex;
+  flex-direction: column;
+}
+//&&&&&&&&&
+
+.tf-main {
+  margin-bottom: 20px;
+}
+
+.tf-label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  text-align: left;
+}
+
+.TextField-input {
+  width: 100%;
+  // padding: 10px 0 10px 0;
+  box-sizing: border-box;
+  padding: 10px;
+  border: 1px solid;
+  border-radius: 5px;
+}
+
+// .TextField-input:focus {
+//   border-color: #007bff;
+//   outline: none;
+// }
+
+// .tf-main.error .TextField-input {
+//   border-color: #dc3545;
+// }
+
+.tf-input-container {
+  position: relative;
+  // display: inline-block;
+}
+
+// .show-pass-btn {
+//   background: none;
+//   border: none;
+//   color: #090a0a;
+//   cursor: pointer;
+//   position: absolute;
+//   right: 2px;
+//   top: 35%;
+//   transform: translateY(-50%);
+// }
+
+// .show-pass-btn:hover {
+//   text-decoration: underline;
+// }
+.tf-error {
+  color: #dc3545;
+  margin-top: 5px;
+  font-size: 12px;
+  text-align: left;
+}
+
+.form-checkbox {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  // justify-content: flex-start;
+  margin-left: 10px;
+}
+
+.checkbox-input {
+  margin-right: 5px;
+}
+
+.but-form {
+  width: 100%;
+  padding: 10px;
+  background-color: $btnColor;
+  // color: $btnColor;
+  // border: none;
+  border-radius: 4px;
+  color: #ffffff;
+  text-shadow: rgb(7, 7, 7) 0.3px 0 2px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.but-form:hover {
+  -webkit-box-shadow: 4px 4px 1px -3px rgba(0, 0, 0, 0.57);
+  -moz-box-shadow: 4px 4px 1px -3px rgba(0, 0, 0, 0.57);
+  box-shadow: 4px 4px 1px -3px rgba(0, 0, 0, 0.57);
+  transition: 0.2s;
+}
+
+// .but-form:disabled {
+//   background-color: #ccc;
+//   cursor: not-allowed;
+// }
+
+.form p {
+  margin-top: 20px;
+  font-size: 14px;
+  color: #ff1c1c;
+}
+
+.form p a {
+  color: #ff3c00;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.form p a:hover {
+  text-decoration: underline;
 }

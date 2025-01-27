@@ -1,57 +1,70 @@
 @import "variables.scss";
 
-.main-nav {
+.navbar-main-container {
   position: absolute;
-  z-index: 1;
-  // width: $maxscrin;
-  width: 100%;
-  // background-color: $mainColor;
-  // background-color: hsl(0, 90%, 12%);
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.6) 0, transparent 100%);
-  color: #f3f2e9;
-
-  text-align: center;
+  align-items: center;
   justify-content: center;
-}
-.nav-info {
-  margin: 0 auto;
-  max-width: $scrinWidth;
-  display: block;
-  box-sizing: border-box;
 
-  .h-name {
-    margin: 0 auto;
-    padding-top: 15px;
-    font-size: 40px;
-    width: 300px;
-  }
+  display: flex;
 
-  .address {
-    clear: both;
-    float: left;
-  }
+  width: 100%;
+  z-index: 1000;
+  color: #fcfcfc;
+
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.6) 0, transparent 100%);
 }
 
-.nav-bar {
-  margin: 0 auto;
-  max-width: $scrinWidth;
-  margin-top: 15px;
-  text-align: right;
-  padding: 10px;
+.navbar-width {
+  width: $scrinWidth;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
-  .n-div {
-    display: inline-block;
-    text-shadow: rgb(7, 7, 7) 0.3px 0 5px;
-  }
+.logo {
+  font-size: 42px;
+  display: flex;
+  gap: 8px;
+  margin: 5px 0 10px 0;
+  cursor: pointer;
+  text-shadow: rgb(7, 7, 7) 0.3px 0 5px;
+  align-items: center;
+}
+.logo p {
+  font-size: 33px;
+  margin-top: 7px;
+}
+.logo:hover {
+  color: $btnColor;
+  transition: 1s ease;
+  // text-shadow: $btnColor 0.3px 0 5px;
+}
 
-  .n-link {
-    font-size: 28px;
-    font-weight: bolder;
-    padding: 10px;
-  }
+.logo-img {
+  height: 72px;
+}
 
-  .n-link:hover {
-    color: $btnColor;
-    transition: 0.5s;
-  }
+.navbar-main-btn {
+  display: flex;
+  gap: 30px;
+}
+
+.link-btn {
+  font-size: 26px;
+  margin: 5px;
+  border-radius: 50%;
+  text-shadow: rgb(7, 7, 7) 0.3px 0 5px;
+}
+
+// .link-btn:last-child {
+//   color: $btnColor;
+// }
+.link-btn:hover {
+  color: $btnColor;
+  transition: 1s ease;
+  text-shadow: $btnColor 0.3px 0 5px;
+}
+
+.nav-login {
+  color: $btnColor;
 }
