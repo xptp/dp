@@ -5,7 +5,7 @@ const authMiddleware = require("../middleware/auth.middleware");
 
 // бронирование номера
 router.post("/", authMiddleware, async (req, res) => {
-  console.log("Booking request:", req.body);
+  // console.log("Booking request:", req.body);
 
   const { roomId, checkInDate, checkOutDate } = req.body;
   console.log("req.user:", req.user);

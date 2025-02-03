@@ -108,6 +108,7 @@ const UserPage = () => {
                       bookClassName="edit-booking-form"
                       update={updateBooking}
                     />
+
                     <button onClick={handleCancelEdit} className="modal-btn">
                       Отмена
                     </button>
