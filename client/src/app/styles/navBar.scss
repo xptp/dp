@@ -1,16 +1,16 @@
 @import "variables.scss";
 
 .navbar-main-container {
-  position: absolute;
+  position: fixed;
+  top: 0;
+  // position: absolute;
   align-items: center;
   justify-content: center;
-
   display: flex;
-
   width: 100%;
   z-index: 1000;
   color: #fcfcfc;
-  transition: 0.5s ease;
+  transition: all 0.3s ease-in-out;
 
   &.navbar-home {
     background-color: $mainColorHalf;
@@ -29,26 +29,25 @@
 }
 
 .logo {
-  font-size: 42px;
+  font-size: 38px;
   display: flex;
   gap: 8px;
-  margin: 5px 0 10px 0;
   cursor: pointer;
   text-shadow: rgb(7, 7, 7) 0.3px 0 5px;
   align-items: center;
 }
 .logo p {
-  font-size: 33px;
+  font-size: 25px;
   margin-top: 7px;
 }
-.logo:hover {
-  color: $btnColor;
-  transition: 1s ease;
-  // text-shadow: $btnColor 0.3px 0 5px;
-}
+// .logo:hover {
+//   color: $btnColor;
+//   transition: 1s ease;
+//   // text-shadow: $btnColor 0.3px 0 5px;
+// }
 
 .logo-img {
-  height: 72px;
+  height: 57px;
 }
 
 .navbar-main-btn {
@@ -57,15 +56,16 @@
 }
 
 .link-btn {
-  font-size: 26px;
+  font-size: 18px;
   margin: 5px;
   border-radius: 50%;
   text-shadow: rgb(7, 7, 7) 0.3px 0 5px;
 }
 
 .link-btn:hover {
+  // transform: translateY(-1px);
   color: $btnColor;
-  transition: 1s ease;
+  transition: 0.3s ease;
   text-shadow: $btnColor 0.3px 0 5px;
 }
 

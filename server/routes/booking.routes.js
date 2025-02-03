@@ -8,7 +8,7 @@ router.post("/", authMiddleware, async (req, res) => {
   console.log("Booking request:", req.body);
 
   const { roomId, checkInDate, checkOutDate } = req.body;
-  console.log("req.user:", req.user); // Логируем req.user
+  console.log("req.user:", req.user);
   const userId = req.user?.id;
   if (!userId) {
     return res.status(401).json({ message: "User not authenticated" });
@@ -28,7 +28,19 @@ router.post("/", authMiddleware, async (req, res) => {
   }
 });
 
-// Маршрут для отмены бронирования
+router.get("/user-bookings/:userId", authMiddleware, async (req, res) => {
+  const { userId } = req.params;
+
+  try {
+    const bookings = await Booking.find({ user: userId }).populate("room");
+    res.status(200).json(bookings);
+  } catch (error) {
+    console.error("Error fetching user bookings:", error); // Логирование ошибки
+    res.status(500).json({ message: error.message });
+  }
+});
+
+// отмена бронирования
 router.delete("/cancel/:bookingId", authMiddleware, async (req, res) => {
   const { bookingId } = req.params;
   const userId = req.user.id;
@@ -38,14 +50,14 @@ router.delete("/cancel/:bookingId", authMiddleware, async (req, res) => {
     if (booking.user.toString() !== userId) {
       return res.status(403).json({ message: "Forbidden" });
     }
-    booking.status = "cancelled";
-    await booking.save();
-    res.status(200).json(booking);
+    await Booking.findByIdAndDelete(bookingId); // Удаляем бронь из базы данных
+    res.status(200).json({ message: "Booking cancelled successfully" });
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
 });
-// Маршрут для получениявсех бронирований пользователя
+
+// получения всех бронирований юзера
 router.get("/", authMiddleware, async (req, res) => {
   try {
     const bookings = await Booking.find({ user: req.user.id });
@@ -54,17 +66,41 @@ router.get("/", authMiddleware, async (req, res) => {
     res.status(400).json({ message: error.message });
   }
 });
-// Маршрут для получения доступных номеров
-router.get("/available", async (req, res) => {
+
+router.get("/available-rooms", async (req, res) => {
+  const { checkInDate, checkOutDate } = req.query;
+
+  if (!checkInDate || !checkOutDate) {
+    return res
+      .status(400)
+      .json({ message: "checkInDate and checkOutDate are required" });
+  }
+
   try {
-    const bookedRoomIds = await Booking.distinct("room");
+    const bookings = await Booking.find({
+      $or: [
+        {
+          checkInDate: { $lte: checkOutDate },
+          checkOutDate: { $gte: checkInDate },
+        },
+        {
+          checkInDate: { $gte: checkInDate },
+          checkOutDate: { $lte: checkOutDate },
+        },
+      ],
+    });
+
+    const bookedRoomIds = bookings.map((booking) => booking.room._id);
     const availableRooms = await Room.find({ _id: { $nin: bookedRoomIds } });
-    res.status(200).json(availableRooms);
-  } catch (error) {
-    res.status(400).json({ message: error.message });
+
+    res.json(availableRooms);
+  } catch (err) {
+    console.error("Error fetching available rooms:", err);
+    res.status(500).json({ message: err.message });
   }
 });
-// Новый маршрут для получения забронированных дат для конкретного номера
+
+// получения забронированных дат для конкретного номера
 router.get("/get-booked-dates", async (req, res) => {
   const { roomId } = req.query;
 
@@ -84,6 +120,31 @@ router.get("/get-booked-dates", async (req, res) => {
       return dates;
     });
     res.status(200).json({ bookedDates });
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+});
+
+// Обновление бронирования
+router.put("/:bookingId", authMiddleware, async (req, res) => {
+  const { bookingId } = req.params;
+  const { checkInDate, checkOutDate } = req.body;
+  const userId = req.user.id;
+
+  try {
+    const booking = await Booking.findById(bookingId);
+    if (!booking) {
+      return res.status(404).json({ message: "Booking not found" });
+    }
+    if (booking.user.toString() !== userId) {
+      return res.status(403).json({ message: "Forbidden" });
+    }
+
+    booking.checkInDate = checkInDate;
+    booking.checkOutDate = checkOutDate;
+    await booking.save();
+
+    res.status(200).json(booking);
   } catch (error) {
     res.status(400).json({ message: error.message });
   }

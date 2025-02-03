@@ -12,15 +12,12 @@ const SwiperComponent = ({ objImages, clName }) => {
         modules={[Navigation]}
         slidesPerView={1}
         spaceBetween={0}
-        // slidesPerView={1}
         navigation
-        // pagination={{ clickable: true }}
         onSlideChange={() => console.log("slide change")}
-        // onSwiper={(swiper) => console.log(swiper)}
       >
         {objImages.map((o) => (
           <SwiperSlide key={o.id}>
-            <img className="images-swiper" src={o.img} alt="" />
+            <img className="images-swiper" src={o.img} alt={o.alt || ""} />
           </SwiperSlide>
         ))}
       </Swiper>

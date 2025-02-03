@@ -2,8 +2,8 @@
   {
     "id": 0,
     "number": 1,
-    "name": "Стандартый однокомнотный номер с дуспальной кроватью",
-    "shortDescription": "Короткое описание номера",
+    "name": "Стандартый однокомнотный номер",
+    "shortDescription": "das ASD as das dasdasdasdasdadddddddddddddddddddddd asdasd asdasdasd",
     "description": "вффф фф ф фывфы фы вфывф ывфыв фыв фыввффф фф ф фывфы фы вфывф ывфыв фыв фыввффф фф ф фывфы фы вфывф ывфыв фыв фыввффф фф ф фывфы фы вфывф ывфыв фыв фыввффф фф ф фывфы фы вфывф ывфыв фыв фыввффф фф ф фывфы фы вфывф ывфыв фыв фыв",
     "type": "Standard",
     "places": 2,
@@ -24,8 +24,8 @@
   {
     "id": 1,
     "number": 2,
-    "name": "Большой двухкомнотный номер на пять человек",
-    "shortDescription": "Короткое описание номера",
+    "name": "Большой двухкомнотный номер",
+    "shortDescription": "фф ф фывфы фы вфывф ывфыв фыв фыввффф фф ф фывфы фы вфывф ывфыв фыв фыввффф фф ф фывфы фы вфывф ывфыв фыв фыввффф фф ф фывфы фы в",
     "description": "Каждый такой номер в нашем отеле представляет собой гармоничное сочетание стильного интерьера, удобной мебели и необходимых современных удобств Пространство эргономично разделено на спальную и гостиную зоны. В спальной зоне расположены две односпальных кровати (или одна двуспальная по желанию гостя) с ортопедическими матрасами, которые обеспечат вам комфортный отдых Гардеробная зона оснащена шкафом для одежды и обуви, что позволит вам аккуратно разместить свои вещи. Для вашего отдыха и развлечения в номере установлен телевизор с большим выбором каналов. Для вашего отдыха и развлечения в номере установлен телевизор с большим выбором каналов. Все ванные комнаты оборудованы душевыми кабинами, а для гостей предоставлен фен, уютные халаты и тапочки",
     "type": "Standard+",
     "places": 5,
@@ -44,6 +44,33 @@
       {
         "id": 2,
         "img": "https://traveling.by/files/images/2017/12/5757cf45d3bb094932bf8ddcc544e4b6-thumb-940x0.jpg",
+        "active": false
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "number": 4,
+    "name": "Номер Люкс, три комнаты",
+    "shortDescription": "Короткое описание номера",
+    "description": "lordsadasdasdasd asd asd asd asd asda sda sdaslordsadasdasdasd asd asd asd asd asda sda sdaslordsadasdasdasd asd asd asd asd asda sda sdaslordsadasdasdasd asd asd asd asd asda sda sdaslordsadasdasdasd asd asd asd asd asda sda sdas",
+    "type": "Lux",
+    "places": 4,
+    "available": true,
+    "images": [
+      {
+        "id": 0,
+        "img": "https://traveling.by/files/images/2017/12/9cac361508edcc0f3b13c0316f7807a7-thumb-940x0.jpg",
+        "active": true
+      },
+      {
+        "id": 1,
+        "img": "https://img.freepik.com/free-photo/hotel-room-at-a-luxury-resort_53876-138105.jpg?w=996&t=st=1727779267~exp=1727779867~hmac=1a3bdf3f03c162247a126d16af91b2735db80300bc4654e9c13bd4bb1123e3b1",
+        "active": false
+      },
+      {
+        "id": 2,
+        "img": "https://img.freepik.com/free-photo/small-hotel-bedroom-with-white-walls-and-panoramic-window_1262-12488.jpg?w=740&t=st=1727779302~exp=1727779902~hmac=cdc1688ff366fd29172f55f8f825bc541de277e3ff93caa8b26ac41105cf044d",
         "active": false
       }
     ]
@@ -72,6 +99,50 @@
         "id": 2,
         "img": "https://img.freepik.com/free-photo/small-hotel-bedroom-with-white-walls-and-panoramic-window_1262-12488.jpg?w=740&t=st=1727779302~exp=1727779902~hmac=cdc1688ff366fd29172f55f8f825bc541de277e3ff93caa8b26ac41105cf044d",
         "active": false
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "number": 4,
+    "name": "Стандарт, одна комната",
+    "shortDescription": "Стандартный однокомнатный номер с двуспальной кроватью",
+    "description": "lordsadasdasdasd asd asd asd asd asda sda sdaslordsadasdasdasd asd asd asd asd asda sda sdaslordsadasdasdasd asd asd asd asd asda sda sdaslordsadasdasdasd asd asd asd asd asda sda sdaslordsadasdasdasd asd asd asd asd asda sda sdas",
+    "type": "Standard",
+    "places": 2,
+    "available": true,
+    "images": [
+      {
+        "id": 0,
+        "img": "https://as2.ftcdn.net/v2/jpg/00/68/55/87/1000_F_68558789_Vd0Y7d73PgdZmKbuYWyp1Q4w1cxKGI8b.jpg",
+        "active": true
+      },
+      {
+        "id": 1,
+        "img": "https://avatars.mds.yandex.net/get-altay/753950/2a0000016666c25471630fe53b8bd25ed603/XXL",
+        "active": false
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "number": 5,
+    "name": "Стандарт+, одна комната",
+    "shortDescription": "Большой номер с двумя двуспальными кроватями",
+    "description": "lordsadasdasdasd asd asd asd asd asda sda sdaslordsadasdasdasd asd asd asd asd asda sda sdaslordsadasdasdasd asd asd asd asd asda sda sdaslordsadasdasdasd asd asd asd asd asda sda sdaslordsadasdasdasd asd asd asd asd asda sda sdas",
+    "type": "Standard+",
+    "places": 4,
+    "available": true,
+    "images": [
+      {
+        "id": 0,
+        "img": "https://i.pinimg.com/originals/ef/e5/20/efe520af9cdadb5983105a9f7920cb56.jpg",
+        "active": true
+      },
+      {
+        "id": 1,
+        "img": "https://i.pinimg.com/736x/90/4d/5b/904d5b0b3f0fd97d95e63eddfa690195.jpg",
+        "active": true
       }
     ]
   }

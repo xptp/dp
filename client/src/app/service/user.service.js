@@ -32,7 +32,7 @@ const userService = {
         "Content-Type": "application/json",
       };
       const response = await httpAuth.get(`/user?_id=${_id}`, { headers });
-      console.log("response", response.data);
+      // console.log("response", response.data);
       return response.data;
     } catch (error) {
       if (error.response && error.response.status === 401) {

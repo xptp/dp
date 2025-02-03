@@ -6,10 +6,12 @@ import { fetchUser, logoutUser } from "../../store/userSlice";
 import cookieService from "../../service/cookie.service";
 import logo from "../../img/Wpngwing.com.png";
 import { CiLogin, CiLogout } from "react-icons/ci";
+import { IoIosSunny } from "react-icons/io";
+import useDarkMode from "../../hooks/useDarkMode";
 
 const NavBar = () => {
-  const [log, setLog] = useState();
-
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [theme, toggleTheme] = useDarkMode();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const refresh = cookieService.getRefreshToken();
@@ -20,15 +22,26 @@ const NavBar = () => {
     location.pathname === "/" ||
     location.pathname === "/home" ||
     location.pathname === "/login";
-  // console.log(isHomePage);
 
   const user = useSelector((state) => state.user.user);
   const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
 
   useEffect(() => {
-    // console.log(user);
-    // console.log(isLoggedIn);
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
 
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  useEffect(() => {
     if (isLoggedIn && !user) {
       dispatch(fetchUser());
     } else if (!access && refresh) {
@@ -72,7 +85,7 @@ const NavBar = () => {
     >
       <div className="navbar-width">
         {!isHomePage ? (
-          <h2 className="logo">
+          <h2 className={`logo ${!isScrolled ? "scrolled-logo" : ""}`}>
             Peak <p>hotel</p>
           </h2>
         ) : (
@@ -84,6 +97,9 @@ const NavBar = () => {
             <Link to="home">Главная</Link>
           </span>
           <span className="link-btn">
+            <Link to="rooms">Забронировать</Link>
+          </span>
+          <span className="link-btn">
             <a
               href="/home#targetSection"
               onClick={(e) => handleScroll(e, "hotel")}
@@ -91,9 +107,7 @@ const NavBar = () => {
               Отель
             </a>
           </span>
-          <span className="link-btn">
-            <Link to="rooms">Забронировать</Link>
-          </span>
+
           <span className="link-btn">
             <a
               href="/home#targetSection"
@@ -104,9 +118,19 @@ const NavBar = () => {
           </span>
 
           <span className="link-btn">
-            {access && user?.admin ? <Link to="admin">Админ</Link> : null}
+            {access && user?.admin ? (
+              <Link to="admin">Админ</Link>
+            ) : access && user ? (
+              <Link to="user">Бронь</Link>
+            ) : null}
           </span>
+          {/* <span className="link-btn">
+            {access && user ? <Link to="user">Бронь</Link> : null}
+          </span> */}
         </div>
+        <button onClick={toggleTheme}>
+          <IoIosSunny />
+        </button>
 
         <div className="nav-login">
           {access ? (

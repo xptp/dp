@@ -1,19 +1,22 @@
 @import "variables.scss";
+
 * {
   margin: 0;
   padding: 0;
 }
-body {
-  // font-family: Cuprum, sans-serif;
 
-  // font-family: "open sans", sans-serif;
+body {
   font-family: "Open Sans", serif;
-  // font-optical-sizing: auto;
-  // font-weight: 400;
-  // font-style: normal;
-  // font-variation-settings: "wdth" 100;
+  transition: background-color 0.3s, color 0.3s;
+}
+body.light {
+  background-color: white;
   color: black;
-  // color: white;
+}
+body.dark {
+  background-color: $mainColor;
+  // background-color: black;
+  color: white;
 }
 
 .App {
@@ -27,6 +30,7 @@ a {
   text-decoration: none;
   color: inherit;
 }
+
 li {
   list-style-type: none;
 }

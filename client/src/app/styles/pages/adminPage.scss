@@ -1,18 +1,31 @@
 @import "../variables.scss";
 .admin {
+  display: flex;
   align-items: center;
   justify-content: center;
-  max-width: $scrinWidth;
+  max-width: $maxscrin;
   margin: 0 auto;
   // display: block;
   // position: relative;
 }
 
 .admin-page {
-  padding-top: 129px;
+  display: flex;
+  align-items: start;
+  justify-content: left;
+  margin-top: 80px;
+  max-width: $scrinWidth;
 }
 
 .admin-room-box {
+  // display: flex;
+
+  width: 100px;
+  height: 100px;
+  border: 2px solid black;
+  margin: 5px;
+  background-color: #fff;
+  color: $mainColor;
 }
 // .a {
 //

@@ -4,26 +4,24 @@ import Loader from "../../ui/loader";
 import SwiperComponent from "../../ui/swiperComponent";
 import "../../../styles/pages/roomPage.scss";
 import roomService from "../../../service/roomService.service";
-import BookingForm from "../../ui/booingForm";
-import CancelBooking from "../../ui/bookengDelForm";
+import BookingForm from "../../ui/bookingForm";
 
 const RoomPage = () => {
   const [room, setRoom] = useState(null);
   const { _id } = useParams();
-  // console.log(_id);
-
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchRoom = async () => {
-      setIsLoading(true);
       try {
+        setIsLoading(true);
         const fetchedRoom = await roomService.getById(_id);
         setRoom(fetchedRoom);
+        setIsLoading(false);
       } catch (error) {
-        console.error("Ошибка при получении комнаты:", error);
+        console.error(error);
+        setIsLoading(false);
       }
-      setIsLoading(false);
     };
 
     fetchRoom();
@@ -33,20 +31,29 @@ const RoomPage = () => {
     return <Loader />;
   }
 
-  return room ? (
-    <div className="roomPage">
-      <SwiperComponent objImages={room.images} clName={"main-swiper-room"} />
-      <BookingForm roomId={_id} />
-      <CancelBooking />
-      <div className="room-content">
-        <h1>{room.name}</h1>
-        <div className="places">Количество спальных мест: {room.places}</div>
-        <p className="desc">{room.description}</p>
-      </div>
+  return (
+    <>
+      {!isLoading ? (
+        <div className="roomPage">
+          <div className="room-content">
+            <h1>{room.name}</h1>
+            <p>{room.description}</p>
+            <div className="places">
+              Количество спальных мест: {room.places}
+            </div>
+            <BookingForm roomId={_id} bookClassName={"booking-form"} />
+          </div>
 
-      <button className="btn">ЗАБРОНИРОВАТЬ</button>
-    </div>
-  ) : null;
+          <SwiperComponent
+            objImages={room.images}
+            clName={"main-swiper-room"}
+          />
+        </div>
+      ) : (
+        <Loader />
+      )}
+    </>
+  );
 };
 
 export default RoomPage;
