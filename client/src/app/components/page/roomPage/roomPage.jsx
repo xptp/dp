@@ -4,7 +4,7 @@ import Loader from "../../ui/loader";
 import SwiperComponent from "../../ui/swiperComponent";
 import "../../../styles/pages/roomPage.scss";
 import roomService from "../../../service/roomService.service";
-import BookingForm from "../../ui/bookingForm";
+import BookingForm from "../../forms/bookingForm";
 
 const RoomPage = () => {
   const [room, setRoom] = useState(null);

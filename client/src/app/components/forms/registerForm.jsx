@@ -13,9 +13,6 @@ const RegisterForm = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // const handleChange = ({ target }) => {
-  //   setData((prevState) => ({ ...prevState, [target.name]: target.value }));
-  // };
   const handleChange = ({ target }) => {
     setData((prevState) => ({
       ...prevState,

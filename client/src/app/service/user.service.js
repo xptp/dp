@@ -12,7 +12,7 @@ const httpAuth = axios.create({
 
 const userService = {
   get: async (dispatch) => {
-    console.log("1");
+    // console.log("1");
     try {
       const _id = cookieService.getUserId();
       const accesstoken = cookieService.getAccessToken();
@@ -36,7 +36,6 @@ const userService = {
       return response.data;
     } catch (error) {
       if (error.response && error.response.status === 401) {
-        console.error("Access token expired, attempting to refresh...");
         await refreshAccessToken(dispatch);
         console.log("1111");
         return userService.get(dispatch);
@@ -62,10 +61,8 @@ const refreshAccessToken = async (dispatch) => {
     });
 
     console.log(data.data);
-
-    cookieService.setTokens(data.data); // Убедитесь, что вы сохраняете новые токены
-
-    console.log("Access token refreshed");
+    cookieService.setTokens(data.data);
+    // console.log("1");
   } catch (error) {
     console.error("Ошибка при обновлении токена", error);
     dispatch(logoutUser());

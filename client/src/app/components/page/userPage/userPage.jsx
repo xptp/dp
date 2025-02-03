@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import bookingService from "../../../service/booking.service";
-import BookingForm from "../../ui/bookingForm";
 import "../../../styles/pages/userPage.scss";
 import Loader from "../../ui/loader";
+import BookingForm from "../../forms/bookingForm";
 
 const UserPage = () => {
   const [bookings, setBookings] = useState([]);
@@ -124,62 +124,6 @@ const UserPage = () => {
       )}
     </>
   );
-  // (
-  // <div className="main-user-page">
-  //   {user ? (
-  //     <div className="user-page-container">
-  //       {/* <h1>{user.email}</h1> */}
-  //       <h1>Забронированные номера:</h1>
-  //       <ul>
-  //         {bookings.map((booking) => (
-  //           <div className="booking-container" key={booking._id}>
-  //             <p>Номер: {booking.room.number}</p>
-  //             <p>
-  //               Дата въезда:
-  //               {new Date(booking.checkInDate).toLocaleDateString()}
-  //             </p>
-  //             <p>
-  //               Дата выезда:
-  //               {new Date(booking.checkOutDate).toLocaleDateString()}
-  //             </p>
-  //             <button
-  //               onClick={() => handleEditBooking(booking)}
-  //               className="edit-btn user-btn"
-  //             >
-  //               Редактировать бронь
-  //             </button>
-  //             <button
-  //               onClick={() => handleCancelBooking(booking._id)}
-  //               className="del-btn user-btn"
-  //             >
-  //               Удалить бронь
-  //             </button>
-  //           </div>
-  //         ))}
-  //       </ul>
-  //       {editingBooking && (
-  //         <div className="modal">
-  //           <div className="modal-content">
-  //             <BookingForm
-  //               roomId={editingBooking.room._id}
-  //               initialCheckInDate={new Date(editingBooking.checkInDate)}
-  //               initialCheckOutDate={new Date(editingBooking.checkOutDate)}
-  //               bookingId={editingBooking._id}
-  //               bookClassName="edit-booking-form"
-  //               update={updateBooking}
-  //             />
-  //             <button onClick={handleCancelEdit} className="modal-btn">
-  //               Отмена
-  //             </button>
-  //           </div>
-  //         </div>
-  //       )}
-  //     </div>
-  //   ) : (
-  //     <div></div>
-  //   )}
-  // </div>
-  // );
 };
 
 export default UserPage;

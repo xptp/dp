@@ -5,18 +5,16 @@ import SwiperComponent from "../../ui/swiperComponent";
 import Loader from "../../ui/loader";
 import roomService from "../../../service/roomService.service";
 import SortBtn from "../../ui/sortBtn";
-import SortDate from "../../ui/sortDate";
 
 const RoomsPage = () => {
   const [rooms, setRooms] = useState([]);
   const [load, setLoad] = useState(false);
-  // const [filteredRooms, setFilteredRooms] = useState([]);
 
   useEffect(() => {
     fetchRooms();
   }, []);
   useEffect(() => {
-    console.log(rooms);
+    // console.log(rooms);
   }, [rooms]);
 
   async function fetchRooms() {
@@ -53,7 +51,6 @@ const RoomsPage = () => {
       {!load ? (
         <div className="rooms-page">
           <div className="sort-btn-container">
-            {/* <SortDate onFilter={handleFilter} /> */}
             <SortBtn onSort={handleSort} />
           </div>
           {rooms.map((o) => (

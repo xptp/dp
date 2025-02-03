@@ -7,6 +7,7 @@ import cookieService from "../../service/cookie.service";
 import logo from "../../img/Wpngwing.com.png";
 import { CiLogin, CiLogout } from "react-icons/ci";
 import { IoIosSunny } from "react-icons/io";
+import { FaMoon } from "react-icons/fa";
 import useDarkMode from "../../hooks/useDarkMode";
 
 const NavBar = () => {
@@ -58,7 +59,7 @@ const NavBar = () => {
         navigate("/");
       })
       .catch((error) => {
-        console.error("Error logging out:", error);
+        console.error(error);
       });
   };
 
@@ -124,12 +125,12 @@ const NavBar = () => {
               <Link to="user">Бронь</Link>
             ) : null}
           </span>
-          {/* <span className="link-btn">
-            {access && user ? <Link to="user">Бронь</Link> : null}
-          </span> */}
         </div>
-        <button onClick={toggleTheme}>
-          <IoIosSunny />
+        <button
+          className={`mode-btn ${theme === "light" ? `light` : `dark`}`}
+          onClick={toggleTheme}
+        >
+          {theme === "light" ? <IoIosSunny /> : <FaMoon />}
         </button>
 
         <div className="nav-login">

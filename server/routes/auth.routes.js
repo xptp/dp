@@ -7,10 +7,10 @@ const router = express.Router({ mergeParams: true });
 // const cors = require("cors");
 
 // const corsOptions = {
-//   origin: "http://localhost:3000", // Разрешенный источник
-//   methods: "GET,HEAD,PUT,PATCH,POST,DELETE", // Разрешенные методы
-//   allowedHeaders: "Content-Type,Authorization", // Разрешенные заголовки
-//   credentials: true, // Разрешить отправку учетных данных (например, куки)
+//   origin: "http://localhost:3000",
+//   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+//   allowedHeaders: "Content-Type,Authorization",
+//   credentials: true,
 // };
 
 // router.use(cors(corsOptions));
@@ -160,10 +160,11 @@ router.post("/logout", async (req, res) => {
     } else if (userId) {
       await tokenService.removeTokenByUserId(userId);
     } else {
-      return res.status(400).json({ message: "Bad Request" });
+      // return res.status(400).json({ message: "Bad Request" });
+      return res.status(400).json({ message: "Ошибка logout" });
     }
 
-    res.status(200).send({ message: "Logged out successfully" });
+    res.status(200).send({ message: "logout успешно" });
   } catch (e) {
     res
       .status(500)

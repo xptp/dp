@@ -27,7 +27,6 @@ const roomService = {
       return response.data;
     } catch (error) {
       console.error(`Ошибка при получении комнаты с id: ${id}`, error);
-      throw new Error(`Не удалось получить комнату с id: ${id}`);
     }
   },
 };

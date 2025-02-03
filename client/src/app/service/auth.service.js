@@ -16,8 +16,6 @@ const authService = {
       admin,
       returnSecureToken: true,
     });
-    console.log("registration completed");
-
     return data;
   },
   login: async ({ email, password }) => {
@@ -48,7 +46,7 @@ const authService = {
       }
       cookieService.removeAuthData();
     } catch (error) {
-      console.error("Error logout:", error);
+      console.error(error);
       throw error;
     }
   },
