@@ -13,7 +13,7 @@ const SwiperComponent = ({ objImages, clName }) => {
         slidesPerView={1}
         spaceBetween={0}
         navigation
-        onSlideChange={() => console.log("slide change")}
+        // onSlideChange={() => console.log("slide change")}
       >
         {objImages.map((o) => (
           <SwiperSlide key={o.id}>
