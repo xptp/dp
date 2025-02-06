@@ -19,13 +19,21 @@
 
 .admin-room-box {
   // display: flex;
-
+  background-color: rgb(236, 235, 235);
+  border-radius: 5px;
   width: 100px;
   height: 100px;
   border: 2px solid black;
   margin: 5px;
-  background-color: #fff;
+  // background-color: #fff;
   color: $mainColor;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.admin-room-box:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 // .a {
 //

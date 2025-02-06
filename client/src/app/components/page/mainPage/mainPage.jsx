@@ -64,21 +64,10 @@ const MainPage = () => {
           близость многочисленных пешеходных маршрутов и горнолыжных курортов.
         </p>
       </div>
-      {/* <div className="section section-reviews">
-        <div className="reviews-yandex">
-          <iframe src="https://yandex.ru/maps-reviews-widget/13840917962?comments"></iframe>
-          <a
-            href="https://yandex.ru/maps/org/apartamenty_panorama_park/13840917962/"
-            target="_blank"
-          >
-            Апартаменты Панорама парк на карте Сочи — Яндекс Карты
-          </a>
-        </div>
-        <div className="reviews"></div>
-      </div> */}
+
       <div className="map-contact">
         <div className="contact" id="contact">
-          <div className="test">
+          <div className="div-contact-main">
             <div className="contact-address">
               Краснодарский край п. г. т. Красная Поляна <br /> этаж 1, ул.
               Защитников Кавказа, 29

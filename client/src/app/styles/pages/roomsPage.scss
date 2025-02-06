@@ -36,22 +36,22 @@
 }
 
 .link-room {
-  position: relative; /* Добавлено относительное позиционирование */
+  position: relative;
   display: inline-block;
-  width: 100%; /* Убедитесь, что контейнер занимает всю ширину */
-  text-align: center; /* Центрирование текста внутри контейнера */
+  width: 100%;
+  text-align: center;
   display: flex;
   flex-direction: column;
-  height: 100%; /* Убедитесь, что контейнер занимает всю высоту */
+  height: 100%;
 
   .room-info {
     margin-left: 10px;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start; /* Выравнивание по верху */
-    align-items: flex-start; /* Выравнивание по левому краю */
-    flex-grow: 1; /* Разрешает контейнеру растягиваться */
-    width: 100%; /* Убедитесь, что контейнер занимает всю ширину */
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-grow: 1;
+    width: 100%;
 
     h1 {
       margin: 0 20px;

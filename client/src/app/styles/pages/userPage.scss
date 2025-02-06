@@ -39,7 +39,7 @@
   background-color: rgb(219, 36, 36);
 }
 
-.modal {
+.user-modal {
   position: fixed;
   display: flex;
   justify-content: center;
@@ -53,7 +53,7 @@
   background: rgba(0, 0, 0, 0.5);
 }
 
-.modal-content {
+.user-modal-content {
   background: white;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   z-index: 1010;
@@ -62,5 +62,29 @@
 }
 
 .modal-btn {
+  padding: 5px 10px;
+  background-color: $mainColor;
+  color: aliceblue;
+  font-size: 16px;
   margin-top: 10px;
+  transition: 0.2s;
+  border-radius: 5px;
+}
+.modal-btn:hover {
+  background-color: $btnColor;
+}
+
+.book-btn {
+  margin-top: 10px;
+  font-size: 16px;
+  padding: 5px 10px;
+  background-color: $mainColor;
+  color: aliceblue;
+  transition: 0.2s;
+  border-radius: 5px;
+}
+
+.book-btn:hover {
+  background-color: #fff;
+  color: black;
 }

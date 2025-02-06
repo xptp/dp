@@ -96,8 +96,8 @@ const UserPage = () => {
                 ))}
               </ul>
               {editingBooking && (
-                <div className="modal">
-                  <div className="modal-content">
+                <div className="user-modal">
+                  <div className="user-modal-content">
                     <BookingForm
                       roomId={editingBooking.room._id}
                       initialCheckInDate={new Date(editingBooking.checkInDate)}

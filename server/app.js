@@ -5,6 +5,7 @@ const chalk = require("chalk");
 const initDatabase = require("./startUp/initDatabase");
 const routes = require("./routes");
 const cors = require("cors");
+const path = require("path");
 
 const app = express();
 
@@ -15,10 +16,19 @@ app.use("/api", routes);
 
 const PORT = config.get("port") ?? 8080;
 
+// if (process.env.NODE_ENV === "production") {
+//   console.log("Production");
+// } else {
+//   console.log("Development");
+// }
 if (process.env.NODE_ENV === "production") {
-  console.log("Production");
-} else {
-  console.log("Development");
+  app.use("/", express.static(path.join(__dirname, "client")));
+
+  const indexPath = path.join(__dirname, "client", "index.html");
+
+  app.get("*", (req, res) => {
+    res.sendFile(indexPath);
+  });
 }
 
 async function start() {

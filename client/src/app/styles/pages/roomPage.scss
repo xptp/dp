@@ -10,25 +10,30 @@
 }
 
 .main-swiper-room {
+  // width: 100%;
   width: 100%;
-  height: 100%;
+  height: 900px;
   object-fit: cover;
+  object-position: center;
+}
+
+.test {
+  display: flex;
 }
 
 .room-content {
-  display: block;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
   text-align: left;
   h1 {
-    margin: 20px;
+    margin-top: 20px;
     text-align: center;
     font-size: 36px;
   }
 
   p {
-    font-size: 25px;
-    margin: 20px;
+    font-size: 22px;
+    margin: 50px 20px;
   }
   .places {
     margin: 20px;
@@ -39,6 +44,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 60px;
   gap: 16px;
 
   .test {
@@ -50,13 +56,15 @@
     padding: 8px 11px;
     font-size: 23px;
     border-radius: 4px;
+    margin-bottom: 80px;
     color: white;
-    background-color: $btnColor;
+    background-color: $mainColor;
   }
   .book-btn:hover {
     -webkit-box-shadow: 4px 4px 1px -3px rgba(0, 0, 0, 0.57);
     -moz-box-shadow: 4px 4px 1px -3px rgba(0, 0, 0, 0.57);
     box-shadow: 4px 4px 1px -3px rgba(0, 0, 0, 0.57);
     transition: 0.2s;
+    background-color: $btnColor;
   }
 }

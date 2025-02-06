@@ -24,6 +24,7 @@ const BookingForm = ({
   const [minDate, setMinDate] = useState(new Date());
   const [excludeDates, setExcludeDates] = useState([]);
   const [userBooked, setUserBooked] = useState([]);
+  const [bookingCreated, setBokingCreated] = useState(false);
 
   const location = useLocation();
   const isUserPage = location.pathname.includes("/user");
@@ -49,14 +50,13 @@ const BookingForm = ({
       const currentUserBookedDates = response.data.bookedDates
         .filter((booking) => booking.userId === cookieService.getUserId())
         .map((date) => new Date(date));
-      setUserBooked(currentUserBookedDates);
 
-      // setExcludeDates(response.data.bookedDates.map((date) => new Date(date)));
+      setUserBooked(currentUserBookedDates);
       setExcludeDates(bookedDates);
     };
 
     fetchExcludeDates();
-  }, [roomId]);
+  }, [roomId, bookingCreated]);
 
   const handleBooking = async () => {
     const accessToken = cookieService.getAccessToken();
@@ -68,6 +68,7 @@ const BookingForm = ({
     };
     if (!accessToken) {
       alert("Вы должны быть авторизованы,");
+      return;
     }
 
     try {
@@ -89,6 +90,7 @@ const BookingForm = ({
           },
         });
       }
+      setBokingCreated(true);
     } catch (error) {
       console.log(error);
     }

@@ -26,7 +26,7 @@ router.get("/", auth, async (req, res) => {
     if (_id) {
       list = await User.findOne({ _id: _id });
     } else {
-      console.log("33");
+      // console.log("33");
       list = await User.find();
     }
 

@@ -1,12 +1,11 @@
 const express = require("express");
 const router = express.Router();
 const Booking = require("../models/Booking");
+const User = require("../models/User");
 const authMiddleware = require("../middleware/auth.middleware");
 
 // бронирование номера
 router.post("/", authMiddleware, async (req, res) => {
-  // console.log("Booking request:", req.body);
-
   const { roomId, checkInDate, checkOutDate } = req.body;
   console.log("req.user:", req.user);
   const userId = req.user?.id;
@@ -47,13 +46,22 @@ router.delete("/cancel/:bookingId", authMiddleware, async (req, res) => {
 
   try {
     const booking = await Booking.findById(bookingId);
-    if (booking.user.toString() !== userId) {
+    user = await User.findOne({ _id: userId });
+    const isAdmin = user.admin;
+    // console.log("aaasdas", isAdmin);
+
+    if (!booking) {
+      return res.status(404).json({ message: "Бронь не найдена" });
+    }
+    if (isAdmin || booking.user.toString() === userId) {
+      await Booking.findByIdAndDelete(bookingId);
+      return res.status(200).json({ message: "Бронь удалена" });
+    } else {
       return res.status(403).json({ message: "Доступ запрещён" });
     }
-    await Booking.findByIdAndDelete(bookingId);
-    res.status(200).json({ message: "Бронь удалена" });
   } catch (error) {
-    res.status(400).json({ message: error.message });
+    console.error("Ошибка при удалении брони:", error);
+    return res.status(400).json({ message: error.message });
   }
 });
 
@@ -93,7 +101,7 @@ router.get("/available-rooms", async (req, res) => {
 
     res.json(availableRooms);
   } catch (err) {
-    console.error("Error fetching available rooms:", err);
+    console.error(err);
     res.status(500).json({ message: err.message });
   }
 });
@@ -118,6 +126,22 @@ router.get("/get-booked-dates", async (req, res) => {
       return dates;
     });
     res.status(200).json({ bookedDates });
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+});
+router.get("/get-bookings", async (req, res) => {
+  const { roomId } = req.query;
+
+  if (!roomId) {
+    return res.status(400).json({ message: "нет roomId" });
+  }
+
+  try {
+    const bookings = await Booking.find({ room: roomId });
+    // console.log(bookings, "aaaaas");
+    // return bookings;
+    res.status(200).json({ bookings });
   } catch (error) {
     res.status(400).json({ message: error.message });
   }

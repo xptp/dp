@@ -18,6 +18,21 @@
         "id": 1,
         "img": "https://cf.bstatic.com/xdata/images/hotel/max1024x768/22462873.jpg?k=3a3fc9cd108c2f26119e1a8700385f0c173f007dfa853e8147b31b36f58b9ab3&o=&hp=1",
         "active": false
+      },
+      {
+        "id": 3,
+        "img": "https://tripsecrets.ru/wp-content/uploads/2019/09/3-13.jpg",
+        "active": false
+      },
+      {
+        "id": 4,
+        "img": "https://www.hotel-vega.ru/upload/iblock/8ff/8ffe63761894fe3c399f4f68b4dc572f.jpg",
+        "active": false
+      },
+      {
+        "id": 5,
+        "img": "https://avatars.mds.yandex.net/get-altay/4257799/2a00000179edb44c59e72dbc7eccfef9a93e/XXL",
+        "active": false
       }
     ]
   },

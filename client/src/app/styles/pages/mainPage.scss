@@ -126,18 +126,22 @@
 // }
 
 .map-contact {
+  text-align: center;
+  justify-content: center;
   max-width: $scrinWidth;
   margin: 0 auto;
   display: flex;
-  margin-top: 150px;
+  // margin: 150px 0 50px 0;
+  margin: 150px auto 50px auto;
 
   .contact {
     position: relative;
+    // display: block;
     text-align: left;
     // width: 50%;
-    .test {
+    .div-contact-main {
       width: 100%;
-      margin: 110px 0 0 70px;
+      margin: 110px 0 70px 0;
       background-color: $mainColor;
       color: #eee;
       .contact-address {

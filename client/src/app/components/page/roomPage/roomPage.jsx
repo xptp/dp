@@ -36,18 +36,21 @@ const RoomPage = () => {
       {!isLoading ? (
         <div className="roomPage">
           <div className="room-content">
+            <SwiperComponent
+              objImages={room.images}
+              clName={"main-swiper-room"}
+            />
             <h1>{room.name}</h1>
-            <p>{room.description}</p>
-            <div className="places">
-              Количество спальных мест: {room.places}
+            <div className="test">
+              <div>
+                <p>{room.description}</p>
+                <span className="places">
+                  Количество спальных мест: {room.places}
+                </span>
+              </div>
+              <BookingForm roomId={_id} bookClassName={"booking-form"} />
             </div>
-            <BookingForm roomId={_id} bookClassName={"booking-form"} />
           </div>
-
-          <SwiperComponent
-            objImages={room.images}
-            clName={"main-swiper-room"}
-          />
         </div>
       ) : (
         <Loader />
