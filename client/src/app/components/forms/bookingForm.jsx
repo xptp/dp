@@ -4,7 +4,7 @@ import cookieService from "../../service/cookie.service";
 import { addDays, format } from "date-fns";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 // import { useLocation } from "react-router-dom";
 
 const BookingForm = ({
@@ -26,6 +26,7 @@ const BookingForm = ({
   const [userBooked, setUserBooked] = useState([]);
   const [bookingCreated, setBokingCreated] = useState(false);
 
+  const navigate = useNavigate();
   const location = useLocation();
   const isUserPage = location.pathname.includes("/user");
 
@@ -68,6 +69,7 @@ const BookingForm = ({
     };
     if (!accessToken) {
       alert("Вы должны быть авторизованы,");
+      navigate("/login");
       return;
     }
 
@@ -90,7 +92,15 @@ const BookingForm = ({
           },
         });
       }
-      setBokingCreated(true);
+
+      if (location.pathname === "/user") {
+        setBokingCreated(true);
+        alert("Бронирование успешно обновлено");
+      } else {
+        setBokingCreated(true);
+        alert("Номер забронирован");
+        navigate("/user");
+      }
     } catch (error) {
       console.log(error);
     }
