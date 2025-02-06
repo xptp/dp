@@ -1,29 +1,14 @@
 @import "../variables.scss";
-// .div-height {
-//   padding-top: 129px;
-//   height: 100vh;
-// }
-// .container {
-//   width: 100%;
-
-//   padding-right: calc(var(--bs-gutter-x) * 0.5);
-//   padding-left: calc(var(--bs-gutter-x) * 0.5);
-//   margin-right: auto;
-//   margin-left: auto;
-// }
-
 .div-main {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  // background-color: #f8f8f8;
-  // background: url("https://img.geliophoto.com/krasnayapolyana/00_krasnayapolyana.jpg");
   background: url("https://s14.stc.all.kpcdn.net/russia/wp-content/uploads/2021/11/novyj-god-zima-krasnaya-polyana-unsplash.jpg");
-  // background: url("https://s13.stc.all.kpcdn.net/russia/wp-content/uploads/2019/07/Roza-Hutor.jpg");
   background-size: cover;
   background-position: center;
   max-width: $maxscrin;
+  color: black;
   // height: 1000px;
 
   position: relative;
