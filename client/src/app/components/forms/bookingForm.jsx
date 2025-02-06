@@ -33,7 +33,7 @@ const BookingForm = ({
     const fetchExcludeDates = async () => {
       const accessToken = cookieService.getAccessToken();
       const response = await axios.get(
-        `http://localhost:8080/api/book/get-booked-dates`,
+        `http://195.93.252.124/api/book/get-booked-dates`,
         {
           params: {
             roomId,
@@ -74,7 +74,7 @@ const BookingForm = ({
     try {
       if (bookingId) {
         await axios.put(
-          `http://localhost:8080/api/book/${bookingId}`,
+          `http://195.93.252.124/api/book/${bookingId}`,
           bookingData,
           {
             headers: {
@@ -84,7 +84,7 @@ const BookingForm = ({
         );
         update(bookingData);
       } else {
-        await axios.post("http://localhost:8080/api/book/", bookingData, {
+        await axios.post("http://195.93.252.124/api/book/", bookingData, {
           headers: {
             Authorization: `Bearer ${accessToken}`,
           },
