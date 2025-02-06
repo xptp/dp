@@ -11,7 +11,7 @@ client\src\app\videoAndImg\Winter.mp4
 
 # production
 /build
-.dockerignore
+# .dockerignore
 
 # misc
 .DS_Store
