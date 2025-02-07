@@ -22,6 +22,7 @@
   height: 400px;
   margin: 30px 0;
   display: flex;
+  border-radius: 4px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s, box-shadow 0.2s;
 }
@@ -33,6 +34,7 @@
 .room-images-swiper {
   width: 600px;
   height: 100%;
+  border-radius: 4px;
 }
 
 .link-room {
@@ -64,11 +66,6 @@
       font-size: 25px;
       text-align: left;
     }
-
-    // .short-desc {
-    //   text-align: left;
-    //   margin-top: 10px; /* Добавлено расстояние сверху */
-    // }
 
     .room-place {
       position: absolute;

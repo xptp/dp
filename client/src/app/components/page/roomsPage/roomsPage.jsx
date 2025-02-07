@@ -79,26 +79,3 @@ const RoomsPage = () => {
 };
 
 export default RoomsPage;
-{
-  /* {rooms ? (
-        rooms.map((o) => (
-          <div key={o._id} className="room">
-            <SwiperComponent
-              objImages={o.images}
-              clName={"room-images-swiper"}
-            />
-
-            <Link className="link-room" to={`/rooms/${o._id}`}>
-              <div className="room-info">
-                <h1>{o.name}</h1>
-                <p>{o.shortDescription}</p>
-                <div className="room-place">{`Спальных мест: ${o.places}`}</div>
-              </div>
-              <button>Забронировать</button>
-            </Link>
-          </div>
-        ))
-      ) : (
-        <>{load ? <Loader /> : null}</>
-      )} */
-}
