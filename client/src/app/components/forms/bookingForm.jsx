@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import cookieService from "../../service/cookie.service";
 import { addDays, format } from "date-fns";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useLocation, useNavigate } from "react-router-dom";
-// import { useLocation } from "react-router-dom";
+import bookingService from "../../service/booking.service";
 
 const BookingForm = ({
   roomId,
@@ -31,19 +30,8 @@ const BookingForm = ({
   const isUserPage = location.pathname.includes("/user");
 
   useEffect(() => {
-    const fetchExcludeDates = async () => {
-      const accessToken = cookieService.getAccessToken();
-      const response = await axios.get(
-        `http://195.93.252.124/api/book/get-booked-dates`,
-        {
-          params: {
-            roomId,
-          },
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-        }
-      );
+    const fetchExcludeDates = async (roomId) => {
+      const response = await bookingService.getBookedDates(roomId);
 
       const bookedDates = response.data.bookedDates.map(
         (date) => new Date(date)
@@ -56,7 +44,7 @@ const BookingForm = ({
       setExcludeDates(bookedDates);
     };
 
-    fetchExcludeDates();
+    fetchExcludeDates(roomId);
   }, [roomId, bookingCreated]);
 
   const handleBooking = async () => {
@@ -75,22 +63,10 @@ const BookingForm = ({
 
     try {
       if (bookingId) {
-        await axios.put(
-          `http://195.93.252.124/api/book/${bookingId}`,
-          bookingData,
-          {
-            headers: {
-              Authorization: `Bearer ${accessToken}`,
-            },
-          }
-        );
+        await bookingService.putBookingUpdate(bookingId, bookingData);
         update(bookingData);
       } else {
-        await axios.post("http://195.93.252.124/api/book/", bookingData, {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-        });
+        await bookingService.postBooking(bookingData);
       }
 
       if (location.pathname === "/user") {

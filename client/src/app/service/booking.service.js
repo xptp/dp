@@ -40,32 +40,11 @@ const bookingService = {
       throw error;
     }
   },
-  // getBookedDates: async (roomId) => {
-  //   console.log("roomId", roomId);
-
-  //   const accessToken = cookieService.getAccessToken();
-  //   try {
-  //     const { data } = await httpAuth.get(`get-booked-dates`, {
-  //       params: {
-  //         roomId,
-  //       },
-  //       headers: {
-  //         Authorization: `Bearer ${accessToken}`,
-  //       },
-  //     });
-  //     console.log("aaaa", data);
-
-  //     return data;
-  //   } catch (error) {
-  //     console.error("Ошибка получения  дат: ", error);
-  //     throw error;
-  //   }
-  // },
   getBookedDates: async (roomId) => {
-    console.log("roomId", roomId);
     const accessToken = cookieService.getAccessToken();
+
     try {
-      const { data } = await httpAuth.get(`get-booked-dates`, {
+      const response = await httpAuth.get(`get-booked-dates`, {
         params: {
           roomId,
         },
@@ -74,7 +53,7 @@ const bookingService = {
         },
       });
 
-      return data;
+      return response;
     } catch (error) {
       console.error("Ошибка получения  дат: ", error);
       throw error;
@@ -95,6 +74,34 @@ const bookingService = {
       return data.bookings;
     } catch (error) {
       console.error("Ошибка получения  дат: ", error);
+      throw error;
+    }
+  },
+  // обновление брони
+  putBookingUpdate: async (bookingId, bookingData) => {
+    const accessToken = cookieService.getAccessToken();
+    try {
+      await httpAuth.put(`${bookingId}`, bookingData, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
+    } catch (error) {
+      console.error("Ошибка: ", error);
+      throw error;
+    }
+  },
+  // создание
+  postBooking: async (bookingData) => {
+    const accessToken = cookieService.getAccessToken();
+    try {
+      await httpAuth.post(``, bookingData, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
+    } catch (error) {
+      console.error("Ошибка: ", error);
       throw error;
     }
   },
