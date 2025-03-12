@@ -81,6 +81,7 @@ const RegisterForm = () => {
 
   return (
     <div className="form">
+      <h2>Регистрация</h2>
       <form className="container-form" onSubmit={handleSubmit}>
         <TextField
           label="Электронная почта"
@@ -109,7 +110,7 @@ const RegisterForm = () => {
           <label className="form-check-label">Admin</label>
         </div>
         <button className="but-form" type="submit" disabled={!isValid}>
-          Войти
+          Зарегистрироваться
         </button>
       </form>
     </div>

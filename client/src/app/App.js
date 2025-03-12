@@ -9,6 +9,7 @@ import RoomPage from "./components/page/roomPage";
 import { ThemeProvider } from "./hooks/ThemeContext";
 import AdminPage from "./components/page/adminPage";
 import UserPage from "./components/page/userPage";
+import PrivateRoute from "./utils/router/privateRoute";
 
 function App() {
   return (
@@ -22,7 +23,14 @@ function App() {
           <Route path="user" element={<UserPage />} />
           <Route path="rooms/:_id" element={<RoomPage />} />
           <Route path="login/:type?" element={<Login />} />
-          <Route path="admin" element={<AdminPage />} />
+          <Route
+            path="admin"
+            element={
+              <PrivateRoute>
+                <AdminPage />
+              </PrivateRoute>
+            }
+          />
         </Routes>
       </div>
     </ThemeProvider>

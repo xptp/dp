@@ -1,0 +1,17 @@
+@import "../variables.scss";
+.main-btn {
+  padding: 8px 11px;
+  font-size: 23px;
+  border-radius: 4px;
+  color: white;
+  background-color: $mainColor;
+  width: auto;
+  white-space: nowrap;
+}
+.main-btn:hover {
+  transition: 0.2s;
+  background-color: $btnColor;
+  -webkit-box-shadow: 4px 4px 1px -3px rgba(0, 0, 0, 0.57);
+  -moz-box-shadow: 4px 4px 1px -3px rgba(0, 0, 0, 0.57);
+  box-shadow: 4px 4px 1px -3px rgba(0, 0, 0, 0.57);
+}

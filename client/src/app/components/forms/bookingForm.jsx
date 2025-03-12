@@ -5,6 +5,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useLocation, useNavigate } from "react-router-dom";
 import bookingService from "../../service/booking.service";
+import MainBtn from "../ui/mainBtn";
 
 const BookingForm = ({
   roomId,
@@ -110,9 +111,12 @@ const BookingForm = ({
           inline
         />
       </div>
-      <button onClick={handleBooking} className="book-btn">
+      {/* <button onClick={handleBooking} className="book-btn">
         {bookingId ? "Обновить бронь" : "Забронировать"}
-      </button>
+      </button> */}
+      <MainBtn onClick={handleBooking}>
+        {bookingId ? "Обновить бронь" : "Забронировать"}
+      </MainBtn>
     </div>
   );
 };

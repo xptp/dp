@@ -79,6 +79,7 @@ const LoginForm = () => {
 
   return (
     <div className="form">
+      <h2>Авторизация</h2>
       <form onSubmit={handleSubmit} className="container-form">
         <TextField
           label="Электронная почта"

@@ -5,6 +5,7 @@ import SwiperComponent from "../../ui/swiperComponent";
 import Loader from "../../ui/loader";
 import roomService from "../../../service/roomService.service";
 import SortBtn from "../../ui/sortBtn";
+import MainBtn from "../../ui/mainBtn";
 
 const RoomsPage = () => {
   const [rooms, setRooms] = useState([]);
@@ -66,7 +67,10 @@ const RoomsPage = () => {
                   <p>{o.shortDescription}</p>
                   <div className="room-place">{`Спальных мест: ${o.places}`}</div>
                 </div>
-                <button>Забронировать</button>
+                {/* <button>Забронировать</button> */}
+                <div className="button-container">
+                  <MainBtn />
+                </div>
               </Link>
             </div>
           ))}
