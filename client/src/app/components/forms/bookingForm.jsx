@@ -111,10 +111,7 @@ const BookingForm = ({
           inline
         />
       </div>
-      {/* <button onClick={handleBooking} className="book-btn">
-        {bookingId ? "Обновить бронь" : "Забронировать"}
-      </button> */}
-      <MainBtn onClick={handleBooking}>
+      <MainBtn handle={handleBooking}>
         {bookingId ? "Обновить бронь" : "Забронировать"}
       </MainBtn>
     </div>

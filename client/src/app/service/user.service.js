@@ -1,7 +1,7 @@
 import axios from "axios";
 import config from "../config.json";
 import cookieService from "./cookie.service";
-import { logoutUser } from "../store/userSlice";
+import { logoutUser } from "../store/reducers/userSlice";
 
 const httpAuth = axios.create({
   baseURL: config.apiEndpoint,

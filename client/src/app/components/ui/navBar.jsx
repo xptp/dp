@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import "../../styles/navBar.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchUser, logoutUser } from "../../store/userSlice";
+import { fetchUser, logoutUser } from "../../store/reducers/userSlice";
 import cookieService from "../../service/cookie.service";
 import logo from "../../img/Wpngwing.com.png";
 import { CiLogin, CiLogout } from "react-icons/ci";

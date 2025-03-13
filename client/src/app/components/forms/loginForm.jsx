@@ -3,7 +3,7 @@ import TextField from "../common/textField";
 import { validator } from "../../utils/validator";
 import { useDispatch } from "react-redux";
 import { useNavigate, useLocation } from "react-router-dom";
-import { login } from "../../store/userSlice";
+import { login } from "../../store/reducers/userSlice";
 
 const LoginForm = () => {
   const [data, setData] = useState({ email: "", password: "" });

@@ -3,7 +3,7 @@ import TextField from "../common/textField";
 import { validator } from "../../utils/validator";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { signUp } from "../../store/userSlice";
+import { signUp } from "../../store/reducers/userSlice";
 
 const RegisterForm = () => {
   const [data, setData] = useState({ email: "", password: "", admin: false });

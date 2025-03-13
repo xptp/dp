@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import userReducer from "./userSlice";
+import userReducer from "./reducers/userSlice";
 
 const store = configureStore({
   reducer: {
@@ -7,5 +7,4 @@ const store = configureStore({
   },
 });
 
-// console.log("Initial state:", store.getState());
 export default store;
