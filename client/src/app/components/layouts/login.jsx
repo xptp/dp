@@ -25,9 +25,13 @@ const Login = () => {
           <>
             <RegisterForm />
             <p>
-              Already have account?{" "}
-              <Link role="button" onClick={toogleFormType}>
-                Sign In
+              У вас уже есть аккаунт?{" "}
+              <Link
+                className="sign-up-in"
+                role="button"
+                onClick={toogleFormType}
+              >
+                Войти
               </Link>
             </p>
           </>
@@ -35,9 +39,13 @@ const Login = () => {
           <>
             <LoginForm />
             <p>
-              Don't have account?{" "}
-              <Link role="button" onClick={toogleFormType}>
-                Sign Up
+              У вас нет учетной записи?{" "}
+              <Link
+                className="sign-up-in"
+                role="button"
+                onClick={toogleFormType}
+              >
+                Создать
               </Link>
             </p>
           </>
