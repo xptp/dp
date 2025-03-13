@@ -19,7 +19,6 @@ const roomService = {
     throw new Error("Ошибка при получении комнат");
   },
 
-  getAllAvaliableRooms: async () => {},
   getById: async (id) => {
     try {
       const response = await httpAuth.get(`/rooms/${id}`);
@@ -28,6 +27,10 @@ const roomService = {
     } catch (error) {
       console.error(`Ошибка при получении комнаты с id: ${id}`, error);
     }
+  },
+  updateRoom: async (id, updatedData) => {
+    const response = await httpAuth.put(`/rooms/${id}`, updatedData);
+    return response.data;
   },
 };
 

@@ -111,7 +111,7 @@ const BookingForm = ({
           inline
         />
       </div>
-      <MainBtn handle={handleBooking}>
+      <MainBtn handle={handleBooking} text={"Забронировать"}>
         {bookingId ? "Обновить бронь" : "Забронировать"}
       </MainBtn>
     </div>

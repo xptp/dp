@@ -26,11 +26,23 @@ const roomSlice = createSlice({
       state.currentRoom = action.payload;
       state.isLoading = false;
     },
+    roomUpdated: (state, action) => {
+      const updatedRoom = action.payload;
+      state.rooms = state.rooms.map((room) =>
+        room._id === updatedRoom._id ? updatedRoom : room
+      );
+      state.currentRoom = updatedRoom;
+    },
   },
 });
 
-export const { roomsRequested, roomsReceived, roomsRequestedFailed, roomById } =
-  roomSlice.actions;
+export const {
+  roomsRequested,
+  roomsReceived,
+  roomsRequestedFailed,
+  roomById,
+  roomUpdated,
+} = roomSlice.actions;
 
 export const loadRooms = () => async (dispatch) => {
   dispatch(roomsRequested());
@@ -47,6 +59,15 @@ export const loadRoomById = (id) => async (dispatch) => {
   try {
     const room = await roomService.getById(id);
     dispatch(roomById(room));
+  } catch (e) {
+    dispatch(roomsRequestedFailed(e.message));
+  }
+};
+export const updateRoom = (id, updatedData) => async (dispatch) => {
+  dispatch(roomsRequested());
+  try {
+    const response = await roomService.updateRoom(id, updatedData);
+    dispatch(roomUpdated(response.data));
   } catch (e) {
     dispatch(roomsRequestedFailed(e.message));
   }

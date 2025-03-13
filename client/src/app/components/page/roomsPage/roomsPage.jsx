@@ -57,7 +57,7 @@ const RoomsPage = () => {
               <div className="room-place">{`Спальных мест: ${o.places}`}</div>
             </div>
             <div className="button-container">
-              <MainBtn />
+              <MainBtn text={"Забронировать"} />
             </div>
           </Link>
         </div>

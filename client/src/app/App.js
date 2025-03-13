@@ -10,6 +10,7 @@ import { ThemeProvider } from "./hooks/ThemeContext";
 import AdminPage from "./components/page/adminPage";
 import UserPage from "./components/page/userPage";
 import PrivateRoute from "./utils/router/privateRoute";
+import EdithRoomPage from "./components/page/edithRoomPage/edithRoomPage";
 
 function App() {
   return (
@@ -23,6 +24,14 @@ function App() {
           <Route path="user" element={<UserPage />} />
           <Route path="rooms/:_id" element={<RoomPage />} />
           <Route path="login/:type?" element={<Login />} />
+          <Route
+            path="rooms/:_id/edith"
+            element={
+              <PrivateRoute>
+                <EdithRoomPage />
+              </PrivateRoute>
+            }
+          />
           <Route
             path="admin"
             element={

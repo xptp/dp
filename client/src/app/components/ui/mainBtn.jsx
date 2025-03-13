@@ -1,13 +1,13 @@
 import React from "react";
 import "../../styles/ui/mainBtn.scss";
 
-const MainBtn = ({ handle }) => {
+const MainBtn = ({ handle, text }) => {
   return handle ? (
     <button onClick={handle} className="main-btn">
-      Забронировать
+      {text}
     </button>
   ) : (
-    <button className="main-btn">Забронировать</button>
+    <button className="main-btn">{text}</button>
   );
 };
 
