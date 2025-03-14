@@ -132,7 +132,7 @@ export const updateUserProfile = (updatedData) => async (dispatch) => {
   try {
     const updatedUser = await userService.update(updatedData);
     dispatch(updateUser(updatedUser));
-    // dispatch(loginSuccess(updatedUser));
+    dispatch(loginSuccess(updatedUser));
   } catch (e) {
     dispatch(authRequestFailed(e.message));
   }

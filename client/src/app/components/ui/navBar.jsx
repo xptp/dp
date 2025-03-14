@@ -133,9 +133,11 @@ const NavBar = () => {
         >
           {theme === "light" ? <IoIosSunny /> : <FaMoon />}
         </button>
-        <Link to="userEdith" className="mode-btn light">
-          <GrUserManager />
-        </Link>
+        {user ? (
+          <Link to="userEdith" className="mode-btn light">
+            <GrUserManager />
+          </Link>
+        ) : null}
 
         <div className="nav-login">
           {access ? (

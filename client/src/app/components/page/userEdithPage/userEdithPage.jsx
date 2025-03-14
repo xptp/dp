@@ -2,10 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import "../../../styles/pages/edithAddRoomPage.scss";
-import {
-  updateUser,
-  updateUserProfile,
-} from "../../../store/reducers/userSlice";
+import { updateUserProfile } from "../../../store/reducers/userSlice";
 import Loader from "../../ui/loader";
 const UserEdithPage = () => {
   const dispatch = useDispatch();

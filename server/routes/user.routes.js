@@ -39,15 +39,13 @@ router.get("/", auth, async (req, res) => {
 });
 
 router.put("/:userId", auth, async (req, res) => {
-  console.log("1");
-
   try {
     const { userId } = req.params;
-    if (userId === req.user._id) {
+
+    if (userId === req.user.id) {
       const updatedUser = await User.findByIdAndUpdate(userId, req.body, {
         new: true,
       });
-
       if (!updatedUser) {
         return res.status(404).json({ message: "Пользовательне найден" });
       }

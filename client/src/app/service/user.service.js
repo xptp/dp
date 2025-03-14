@@ -4,7 +4,8 @@ import cookieService from "./cookie.service";
 import { logoutUser } from "../store/reducers/userSlice";
 
 const httpAuth = axios.create({
-  baseURL: config.apiEndpoint,
+  // baseURL: config.apiEndpoint,
+  baseURL: config.apiEndpointTest,
   params: {
     key: process.env.REACT_APP_FIREBASE_KEY,
   },
@@ -46,9 +47,11 @@ const userService = {
     }
   },
   update: async (updatedData) => {
+    const accessToken = cookieService.getAccessToken();
     try {
       const _id = cookieService.getUserId();
       const headers = {
+        Authorization: `Bearer ${accessToken}`,
         "Content-Type": "application/json",
       };
 
