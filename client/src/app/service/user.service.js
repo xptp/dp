@@ -45,6 +45,22 @@ const userService = {
       }
     }
   },
+  update: async (updatedData) => {
+    try {
+      const _id = cookieService.getUserId();
+      const headers = {
+        "Content-Type": "application/json",
+      };
+
+      const response = await httpAuth.put(`/user/${_id}`, updatedData, {
+        headers,
+      });
+      return response.data;
+    } catch (e) {
+      console.error("Ошибка обновления пользователя", e);
+      throw e;
+    }
+  },
 };
 
 const refreshAccessToken = async (dispatch) => {

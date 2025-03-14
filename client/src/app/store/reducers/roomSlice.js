@@ -33,6 +33,14 @@ const roomSlice = createSlice({
       );
       state.currentRoom = updatedRoom;
     },
+    roomAdd: (state, action) => {
+      state.rooms.push(action.payload);
+      state.isLoading = false;
+    },
+    roomDeleted: (state, action) => {
+      const roomId = action.payload;
+      state.rooms = state.rooms.filter((room) => room._id !== roomId);
+    },
   },
 });
 
@@ -42,6 +50,8 @@ export const {
   roomsRequestedFailed,
   roomById,
   roomUpdated,
+  roomAdd,
+  roomDeleted,
 } = roomSlice.actions;
 
 export const loadRooms = () => async (dispatch) => {
@@ -67,9 +77,32 @@ export const updateRoom = (id, updatedData) => async (dispatch) => {
   dispatch(roomsRequested());
   try {
     const response = await roomService.updateRoom(id, updatedData);
+    // console.log("444444:", response.data);
     dispatch(roomUpdated(response.data));
   } catch (e) {
     dispatch(roomsRequestedFailed(e.message));
+  }
+};
+export const createRoom = (roomData) => async (dispatch) => {
+  dispatch(roomsRequested());
+  try {
+    const response = await roomService.createRoom(roomData);
+    dispatch(roomAdd(response.data));
+  } catch (e) {
+    dispatch(roomsRequestedFailed(e.message));
+  }
+};
+export const deleteRoom = (id) => async (dispatch) => {
+  dispatch(roomsRequested());
+  try {
+    await roomService.deleteRoom(id);
+
+    dispatch(roomDeleted(id));
+
+    return Promise.resolve();
+  } catch (e) {
+    dispatch(roomsRequestedFailed(e.message));
+    return Promise.reject(e);
   }
 };
 

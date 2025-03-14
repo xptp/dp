@@ -19,6 +19,7 @@ const TextField = ({ label, type, name, value, onChange, error }) => {
           value={value}
           onChange={onChange}
           className="TextField-input"
+          required
         />
         {/* {type === "password" && (
           <button onClick={togleShowPassword} className="show-pass-btn">

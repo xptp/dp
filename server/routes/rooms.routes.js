@@ -28,6 +28,7 @@ router.put("/:id", async (req, res) => {
   try {
     const { id } = req.params;
     const updatedData = req.body;
+    console.log("dddd", updatedData);
     const updatedRoom = await Room.findByIdAndUpdate(id, updatedData, {
       new: true,
       runValidators: true,
@@ -38,6 +39,26 @@ router.put("/:id", async (req, res) => {
     res.status(200).json(updatedRoom);
   } catch (e) {
     res.status(500).json({ message: e.message });
+  }
+});
+
+router.post("/", async (req, res) => {
+  try {
+    const roomData = req.body;
+    const newRoom = new Room(roomData);
+    await newRoom.save();
+    res.status(201).json(newRoom);
+  } catch (e) {
+    res.status(500).json({ message: "Ошибка при создании комнаты" });
+  }
+});
+router.delete("/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    await Room.findByIdAndDelete(id);
+    res.status(200).json({ message: "номер удалён" });
+  } catch (e) {
+    res.status(500).json({ message: "ошибка удаления номера" });
   }
 });
 

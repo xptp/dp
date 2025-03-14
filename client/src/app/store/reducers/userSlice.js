@@ -50,6 +50,11 @@ const userSlice = createSlice({
       state.error = action.payload;
       state.isLoading = false;
     },
+    updateUser: (state, action) => {
+      if (state.user) {
+        state.user = { ...state.user, ...action.payload };
+      }
+    },
   },
 });
 
@@ -59,14 +64,15 @@ export const {
   authRequestSuccess,
   authRequested,
   authRequestFailed,
+  updateUser,
 } = userSlice.actions;
 export const signUp =
   ({ payload, redirect, navigate }) =>
   async (dispatch) => {
-    const { email, password, admin } = payload;
+    const { email, name, password, admin } = payload;
     dispatch(authRequested());
     try {
-      const data = await authService.register({ email, password, admin });
+      const data = await authService.register({ email, name, password, admin });
       console.log(data);
       cookieService.setTokens(data);
       dispatch(authRequestSuccess({ userId: data.userId }));
@@ -119,6 +125,16 @@ export const fetchUser = () => async (dispatch) => {
     } else {
       dispatch(authRequestFailed(error.message));
     }
+  }
+};
+export const updateUserProfile = (updatedData) => async (dispatch) => {
+  dispatch(authRequested());
+  try {
+    const updatedUser = await userService.update(updatedData);
+    dispatch(updateUser(updatedUser));
+    // dispatch(loginSuccess(updatedUser));
+  } catch (e) {
+    dispatch(authRequestFailed(e.message));
   }
 };
 export default userSlice.reducer;

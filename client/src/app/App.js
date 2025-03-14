@@ -11,6 +11,8 @@ import AdminPage from "./components/page/adminPage";
 import UserPage from "./components/page/userPage";
 import PrivateRoute from "./utils/router/privateRoute";
 import EdithRoomPage from "./components/page/edithRoomPage/edithRoomPage";
+import AddRoomPage from "./components/page/addRomPage";
+import UserEdithPage from "./components/page/userEdithPage/userEdithPage";
 
 function App() {
   return (
@@ -24,6 +26,7 @@ function App() {
           <Route path="user" element={<UserPage />} />
           <Route path="rooms/:_id" element={<RoomPage />} />
           <Route path="login/:type?" element={<Login />} />
+          <Route path="userEdith" element={<UserEdithPage />} />
           <Route
             path="rooms/:_id/edith"
             element={
@@ -37,6 +40,14 @@ function App() {
             element={
               <PrivateRoute>
                 <AdminPage />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="rooms/addRoom"
+            element={
+              <PrivateRoute>
+                <AddRoomPage />
               </PrivateRoute>
             }
           />

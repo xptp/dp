@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Loader from "../../ui/loader";
 import SwiperComponent from "../../ui/swiperComponent";
 import "../../../styles/pages/roomPage.scss";

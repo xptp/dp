@@ -1,0 +1,76 @@
+.add-edith-room-form {
+  margin: 50px auto 0 auto;
+  max-width: 800px;
+  padding: 20px;
+  h1 {
+    // text-align: center;\
+    margin-bottom: 10px;
+  }
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .add-edith-div {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    label {
+      font-weight: bold;
+      font-size: 22px;
+      text-align: left;
+    }
+    input,
+    select {
+      font-size: 14px;
+      padding: 5px;
+    }
+    textarea {
+      height: 300px;
+      resize: vertical;
+      font-size: 14px;
+      padding: 5px;
+    }
+
+    .add-edith-div-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+
+      .add-edith-img-box {
+        position: relative;
+        // display: flex;
+        img {
+          object-fit: cover;
+          height: 295px;
+          width: 395px;
+        }
+        .img-del-btn {
+          position: absolute;
+          right: 0;
+          padding: 4px;
+          background: none;
+          border: none;
+          font-size: 20px;
+
+          cursor: pointer;
+        }
+        .img-del-btn:hover {
+          transform: translateY(-1px);
+        }
+      }
+    }
+  }
+  .btn-edith-add-room {
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  .btn-edith-add-room:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+}

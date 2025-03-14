@@ -34,9 +34,9 @@ router.post("/signUp", [
           },
         });
       }
-
-      const { email, password, admin } = req.body;
-      console.log("aaaaa", req.body);
+      s;
+      const { email, name, password } = req.body;
+      // console.log("aaaaa", req.body);
 
       const normalizedEmail = email.toLowerCase();
 

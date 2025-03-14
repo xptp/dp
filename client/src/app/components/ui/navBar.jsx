@@ -7,6 +7,7 @@ import cookieService from "../../service/cookie.service";
 import logo from "../../img/Wpngwing.com.png";
 import { CiLogin, CiLogout } from "react-icons/ci";
 import { IoIosSunny } from "react-icons/io";
+import { GrUserManager } from "react-icons/gr";
 import { FaMoon } from "react-icons/fa";
 import useDarkMode from "../../hooks/useDarkMode";
 
@@ -132,6 +133,9 @@ const NavBar = () => {
         >
           {theme === "light" ? <IoIosSunny /> : <FaMoon />}
         </button>
+        <Link to="userEdith" className="mode-btn light">
+          <GrUserManager />
+        </Link>
 
         <div className="nav-login">
           {access ? (

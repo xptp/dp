@@ -6,7 +6,12 @@ import { useDispatch } from "react-redux";
 import { signUp } from "../../store/reducers/userSlice";
 
 const RegisterForm = () => {
-  const [data, setData] = useState({ email: "", password: "", admin: false });
+  const [data, setData] = useState({
+    email: "",
+    name: "",
+    password: "",
+    admin: false,
+  });
   const [errors, setErrors] = useState({});
 
   const dispatch = useDispatch();
@@ -68,10 +73,8 @@ const RegisterForm = () => {
     e.preventDefault();
     try {
       const isValid = validate();
-
       if (!isValid) return;
       const redirect = location.state ? location.state.from.pathname : "/";
-      console.log(data);
 
       dispatch(signUp({ payload: data, redirect, navigate }));
     } catch (error) {
@@ -90,6 +93,13 @@ const RegisterForm = () => {
           value={data.email}
           onChange={handleChange}
           error={errors.email}
+        />
+        <TextField
+          label="Имя"
+          type="text"
+          name="name"
+          value={data.name}
+          onChange={handleChange}
         />
         <TextField
           label="Пароль"

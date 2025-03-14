@@ -1,21 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, useNavigate } from "react-router-dom";
-import {
-  deleteRoom,
-  loadRoomById,
-  updateRoom,
-} from "../../../store/reducers/roomSlice";
+import { useNavigate } from "react-router-dom";
+import { createRoom, roomAdd } from "../../../store/reducers/roomSlice";
 import Loader from "../../ui/loader";
 import "../../../styles/pages/edithAddRoomPage.scss";
 import { TbXboxX } from "react-icons/tb";
-
-const EdithRoomPage = () => {
-  const { _id } = useParams();
+const AddRoomPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { currentRoom, isLoading, error } = useSelector((state) => state.rooms);
-  const [room, setRoom] = useState({
+  const { isLoading, error } = useSelector((state) => state.rooms);
+
+  const [newRoom, setNewRoom] = useState({
     number: "",
     name: "",
     shortDescription: "",
@@ -24,44 +19,9 @@ const EdithRoomPage = () => {
     places: "",
     images: [],
   });
-
-  useEffect(() => {
-    dispatch(loadRoomById(_id));
-  }, [_id, dispatch]);
-
-  useEffect(() => {
-    if (currentRoom) {
-      console.log(currentRoom);
-
-      setRoom({
-        number: currentRoom.number,
-        name: currentRoom.name,
-        shortDescription: currentRoom.shortDescription,
-        description: currentRoom.description,
-        type: currentRoom.type,
-        places: currentRoom.places,
-        images: currentRoom.images,
-      });
-    }
-  }, [currentRoom]);
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setRoom({ ...room, [name]: value });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    dispatch(updateRoom(_id, room)).then(() => {
-      setTimeout(() => {
-        navigate(`/rooms/${_id}`);
-      }, 500);
-    });
-  };
-
   const delRoomsImg = (id) => {
-    const newRoom = { ...room };
-    const images = [...room.images];
+    const newRoom = { ...newRoom };
+    const images = [...newRoom.images];
 
     const index = images.findIndex((img) => img.id === id);
     if (index !== -1) {
@@ -69,35 +29,33 @@ const EdithRoomPage = () => {
     }
 
     newRoom.images = images;
-    setRoom(newRoom);
+    setNewRoom(newRoom);
   };
 
-  const handleDElete = () => {
-    if (window.confirm("Удалить этот номер?")) {
-      dispatch(deleteRoom(_id))
-        .then(() => {
-          navigate("/rooms");
-        })
-        .catch((e) => {
-          console.error("ошибка удаления", e);
-        });
-    }
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setNewRoom({ ...newRoom, [name]: value });
   };
 
   const addImage = () => {
     const imageUrl = document.getElementById("imageUrl").value;
     if (imageUrl) {
       const newImage = {
-        id: room.images.length,
+        id: newRoom.images.length,
         img: imageUrl,
         active: false,
       };
-
-      const updatedImages = [...room.images, newImage];
-      setRoom({ ...room, images: updatedImages });
-
+      const updatedImages = [...newRoom.images, newImage];
+      setNewRoom({ ...newRoom, images: updatedImages });
       document.getElementById("imageUrl").value = "";
     }
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(createRoom(newRoom)).then(() => {
+      navigate("/rooms");
+    });
   };
 
   if (isLoading) {
@@ -107,17 +65,16 @@ const EdithRoomPage = () => {
   if (error) {
     return <div>Ошибка: {error}</div>;
   }
-
   return (
     <div className="add-edith-room-form">
-      <h1>Редактирование номера</h1>
+      <h1>Добавление нового номера</h1>
       <form onSubmit={handleSubmit}>
         <div className="add-edith-div">
           <label>Номер:</label>
           <input
             type="text"
             name="number"
-            value={room.number}
+            // value={room.number}
             onChange={handleChange}
           />
         </div>
@@ -126,7 +83,7 @@ const EdithRoomPage = () => {
           <input
             type="text"
             name="name"
-            value={room.name}
+            // value={room.name}
             onChange={handleChange}
           />
         </div>
@@ -135,27 +92,21 @@ const EdithRoomPage = () => {
           <input
             type="text"
             name="shortDescription"
-            value={room.shortDescription}
+            // value={room.shortDescription}
             onChange={handleChange}
           />
         </div>
         <div className="add-edith-div">
-          <label>Описание:</label>
+          <label>Полное описание:</label>
           <textarea
             name="description"
-            value={room.description}
+            // value={room.description}
             onChange={handleChange}
           />
         </div>
-
         <div className="add-edith-div">
           <label>Тип:</label>
-          <select
-            name="type"
-            id=""
-            defaultValue={room.type}
-            onChange={handleChange}
-          >
+          <select name="type" id="" onChange={handleChange}>
             <option value="Standart">Standart</option>
             <option value="Standart+">Standart+</option>
             <option value="Lux">Lux</option>
@@ -166,7 +117,7 @@ const EdithRoomPage = () => {
           <input
             type="number"
             name="places"
-            value={room.places}
+            // value={room.places}
             onChange={handleChange}
           />
         </div>
@@ -177,19 +128,16 @@ const EdithRoomPage = () => {
             id="imageUrl"
             placeholder="Введите URL изображения"
           />
-          <button
-            className="btn-edith-add-room"
-            type="button"
-            onClick={addImage}
-          >
+          <button type="button" onClick={addImage}>
             Добавить фото
           </button>
         </div>
+
         <div className="add-edith-div">
           <label>Минимум две фотографии</label>
 
           <div className="add-edith-div-container">
-            {room.images.map((i) => {
+            {newRoom.images.map((i) => {
               // console.log(i);
               return (
                 <div className="add-edith-img-box">
@@ -206,20 +154,12 @@ const EdithRoomPage = () => {
             })}
           </div>
         </div>
-
-        <button className="btn-edith-add-room" type="submit">
-          Сохранить
-        </button>
-        <button
-          className="btn-edith-add-room"
-          type="button"
-          onClick={handleDElete}
-        >
-          Удалить
+        <button className="save-room-btn" type="submit">
+          Создать номер
         </button>
       </form>
     </div>
   );
 };
 
-export default EdithRoomPage;
+export default AddRoomPage;
