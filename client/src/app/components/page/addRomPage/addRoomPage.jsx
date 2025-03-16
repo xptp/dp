@@ -107,8 +107,8 @@ const AddRoomPage = () => {
         <div className="add-edith-div">
           <label>Тип:</label>
           <select name="type" id="" onChange={handleChange}>
-            <option value="Standart">Standart</option>
-            <option value="Standart+">Standart+</option>
+            <option value="Standard">Standart</option>
+            <option value="Standard+">Standart+</option>
             <option value="Lux">Lux</option>
           </select>
         </div>

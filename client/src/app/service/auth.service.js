@@ -34,7 +34,7 @@ const authService = {
     //   refreshToken: data.refreshToken,
     //   accessToken: data.idToken,
     //   userId: data.localId,
-    //   admin: data.admin || false,
+    //   admin: data.admin,
     //   expiresIn: data.expiresIn,
     // });
 
