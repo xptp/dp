@@ -11,6 +11,7 @@ import { loadRooms } from "../../../store/reducers/roomSlice";
 const RoomsPage = () => {
   const dispatch = useDispatch();
   const { rooms, isLoading, error } = useSelector((state) => state.rooms);
+  const user = useSelector((state) => state.user.user);
   const navigate = useNavigate();
   const [sortedRooms, setSortedRooms] = useState([]);
   const [filters, setFilters] = useState({
@@ -67,9 +68,11 @@ const RoomsPage = () => {
 
   return (
     <div className="rooms-page">
-      <div>
-        <MainBtn handle={handleClick} text={"Добавить номер"} />
-      </div>
+      {user?.admin ? (
+        <div>
+          <MainBtn handle={handleClick} text={"Добавить номер"} />
+        </div>
+      ) : null}
 
       <div className="sort-btn-container">
         {/* <div className="filter-container"> */}
