@@ -118,6 +118,9 @@ const NavBar = () => {
               Контакты
             </a>
           </span>
+          <span className="link-btn">
+            <Link to="comments">Отзывы</Link>
+          </span>
 
           <span className="link-btn">
             {access && user?.admin ? (

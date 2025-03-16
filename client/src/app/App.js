@@ -13,6 +13,7 @@ import PrivateRoute from "./utils/router/privateRoute";
 import EdithRoomPage from "./components/page/edithRoomPage/edithRoomPage";
 import AddRoomPage from "./components/page/addRomPage";
 import UserEdithPage from "./components/page/userEdithPage/userEdithPage";
+import CommentsPage from "./components/page/commentsPage/commentsPage";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
           <Route path="rooms/:_id" element={<RoomPage />} />
           <Route path="login/:type?" element={<Login />} />
           <Route path="userEdith" element={<UserEdithPage />} />
+          <Route path="comments" element={<CommentsPage />} />
           <Route
             path="rooms/:_id/edith"
             element={

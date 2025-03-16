@@ -17,6 +17,17 @@ const authService = {
       admin,
       returnSecureToken: true,
     });
+    console.log("2", data);
+
+    // 1111111111111111111111111111
+    // cookieService.setTokens({
+    //   refreshToken: data.refreshToken,
+    //   accessToken: data.idToken,
+    //   userId: data.localId,
+    //   admin: admin,
+    //   expiresIn: data.expiresIn,
+    // });
+
     return data;
   },
   login: async ({ email, password }) => {
@@ -26,6 +37,15 @@ const authService = {
       returnSecureToken: true,
     });
     console.log(data);
+
+    // 111111111111111111111111111111111
+    // cookieService.setTokens({
+    //   refreshToken: data.refreshToken,
+    //   accessToken: data.idToken,
+    //   userId: data.localId,
+    //   admin: data.admin || false,
+    //   expiresIn: data.expiresIn,
+    // });
 
     return data;
   },

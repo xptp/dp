@@ -14,6 +14,10 @@ const RoomsPage = () => {
   const navigate = useNavigate();
   const [sortedRooms, setSortedRooms] = useState([...rooms]);
 
+  const finalRooms = useMemo(() => {
+    return sortedRooms;
+  }, [sortedRooms]);
+
   useEffect(() => {
     dispatch(loadRooms());
   }, [dispatch]);
@@ -34,10 +38,6 @@ const RoomsPage = () => {
   const handleClick = () => {
     navigate(`/rooms/addRoom`);
   };
-
-  const finalRooms = useMemo(() => {
-    return sortedRooms;
-  }, [sortedRooms]);
 
   if (isLoading) {
     return <Loader />;

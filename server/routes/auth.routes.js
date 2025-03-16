@@ -20,8 +20,9 @@ router.post("/signUp", [
   check("password", "Минимальная длина пароля 8 символов").isLength({ min: 8 }),
 
   async (req, res) => {
+    // console.log("aaaaa", req.body);
     try {
-      console.log(req.body);
+      // console.log(req.body);
 
       const errors = validationResult(req);
 
@@ -36,7 +37,6 @@ router.post("/signUp", [
       }
       s;
       const { email, name, password } = req.body;
-      // console.log("aaaaa", req.body);
 
       const normalizedEmail = email.toLowerCase();
 
@@ -58,7 +58,10 @@ router.post("/signUp", [
         password: hashedPassword,
       });
 
-      const tokens = tokenService.generate({ id: newUser.id }); //_idx2
+      const tokens = tokenService.generate({
+        id: newUser.id,
+        admin: newUser.admin,
+      }); //_idx2
       await tokenService.save(newUser.id, tokens.refreshToken);
 
       res.status(201).send({ ...tokens, userId: newUser.id });
@@ -111,7 +114,10 @@ router.post("/signInWithPassword", [
         });
       }
 
-      const tokens = tokenService.generate({ id: existingUser.id });
+      const tokens = tokenService.generate({
+        id: existingUser.id,
+        admin: existingUser.admin,
+      });
       await tokenService.save(existingUser.id, tokens.refreshToken);
 
       res
@@ -136,6 +142,7 @@ router.post("/token", async (req, res) => {
 
     const tokens = await tokenService.generate({
       id: data.id,
+      admin: data.admin,
     });
     await tokenService.save(data.id, tokens.refreshToken);
 
@@ -160,7 +167,6 @@ router.post("/logout", async (req, res) => {
     } else if (userId) {
       await tokenService.removeTokenByUserId(userId);
     } else {
-      // return res.status(400).json({ message: "Bad Request" });
       return res.status(400).json({ message: "Ошибка logout" });
     }
 

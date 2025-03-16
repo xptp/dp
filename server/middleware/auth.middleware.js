@@ -23,6 +23,7 @@ module.exports = (req, res, next) => {
     }
 
     req.user = data;
+    // console.log("Данные из токена:", data);
 
     next();
   } catch (e) {

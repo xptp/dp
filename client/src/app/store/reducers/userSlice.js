@@ -70,10 +70,13 @@ export const signUp =
   ({ payload, redirect, navigate }) =>
   async (dispatch) => {
     const { email, name, password, admin } = payload;
+    console.log("1", payload);
+
     dispatch(authRequested());
     try {
       const data = await authService.register({ email, name, password, admin });
       console.log(data);
+      console.log(admin);
       cookieService.setTokens(data);
       dispatch(authRequestSuccess({ userId: data.userId }));
       navigate(redirect);
