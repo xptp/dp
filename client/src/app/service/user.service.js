@@ -4,8 +4,8 @@ import cookieService from "./cookie.service";
 import { logoutUser } from "../store/reducers/userSlice";
 
 const httpAuth = axios.create({
-  // baseURL: config.apiEndpoint,
-  baseURL: config.apiEndpointTest,
+  baseURL: config.apiEndpoint,
+  // baseURL: config.apiEndpointTest,
   params: {
     key: process.env.REACT_APP_FIREBASE_KEY,
   },
