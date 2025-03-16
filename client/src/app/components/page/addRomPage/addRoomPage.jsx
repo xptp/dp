@@ -54,7 +54,7 @@ const AddRoomPage = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(createRoom(newRoom)).then(() => {
-      navigate("/rooms");
+      navigate("/");
     });
   };
 
