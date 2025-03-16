@@ -71,38 +71,19 @@ const AddRoomPage = () => {
       <form onSubmit={handleSubmit}>
         <div className="add-edith-div">
           <label>Номер:</label>
-          <input
-            type="text"
-            name="number"
-            // value={room.number}
-            onChange={handleChange}
-          />
+          <input type="text" name="number" onChange={handleChange} />
         </div>
         <div className="add-edith-div">
           <label>Название:</label>
-          <input
-            type="text"
-            name="name"
-            // value={room.name}
-            onChange={handleChange}
-          />
+          <input type="text" name="name" onChange={handleChange} />
         </div>
         <div className="add-edith-div">
           <label>Короткое описание:</label>
-          <input
-            type="text"
-            name="shortDescription"
-            // value={room.shortDescription}
-            onChange={handleChange}
-          />
+          <input type="text" name="shortDescription" onChange={handleChange} />
         </div>
         <div className="add-edith-div">
           <label>Полное описание:</label>
-          <textarea
-            name="description"
-            // value={room.description}
-            onChange={handleChange}
-          />
+          <textarea name="description" onChange={handleChange} />
         </div>
         <div className="add-edith-div">
           <label>Тип:</label>
@@ -114,12 +95,7 @@ const AddRoomPage = () => {
         </div>
         <div className="add-edith-div">
           <label>Количество мест:</label>
-          <input
-            type="number"
-            name="places"
-            // value={room.places}
-            onChange={handleChange}
-          />
+          <input type="number" name="places" onChange={handleChange} />
         </div>
         <div className="add-edith-div">
           <label>Добавить фото (URL):</label>
