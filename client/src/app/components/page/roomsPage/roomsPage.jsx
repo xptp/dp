@@ -27,9 +27,9 @@ const RoomsPage = () => {
     if (rooms) {
       // console.log('1');
       const f = rooms.filter((room) => {
-        if (room.type === "Standard" && !filters.standart) return false;
-        if (room.type === "Standard+" && !filters.standartPlus) return false;
-        if (room.type === "Lux" && !filters.lux) return false;
+        if (room?.type === "Standard" && !filters.standart) return false;
+        if (room?.type === "Standard+" && !filters.standartPlus) return false;
+        if (room?.type === "Lux" && !filters.lux) return false;
         return true;
       });
       // console.log('2');
@@ -46,8 +46,8 @@ const RoomsPage = () => {
 
   const handleSort = (type) => {
     const sorted = [...sortedRooms].sort((a, b) => {
-      if (a.type === type && b.type !== type) return -1;
-      if (a.type !== type && b.type === type) return 1;
+      if (a?.type === type && b?.type !== type) return -1;
+      if (a?.type !== type && b?.type === type) return 1;
       return 0;
     });
     setSortedRooms(sorted);
@@ -109,6 +109,7 @@ const RoomsPage = () => {
         {/* </div> */}
         <SortBtn onSort={handleSort} />
       </div>
+
       {sortedRooms.length > 0 ? (
         sortedRooms.map((r) => {
           return (

@@ -54,7 +54,7 @@ const AddRoomPage = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(createRoom(newRoom)).then(() => {
-      navigate("/");
+      navigate("/rooms");
     });
   };
 
@@ -128,7 +128,11 @@ const AddRoomPage = () => {
             id="imageUrl"
             placeholder="Введите URL изображения"
           />
-          <button type="button" onClick={addImage}>
+          <button
+            className="btn-edith-add-room"
+            type="button"
+            onClick={addImage}
+          >
             Добавить фото
           </button>
         </div>
@@ -154,7 +158,7 @@ const AddRoomPage = () => {
             })}
           </div>
         </div>
-        <button className="save-room-btn" type="submit">
+        <button className="btn-edith-add-room" type="submit">
           Создать номер
         </button>
       </form>
