@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../../../styles/pages/roomsPage.scss";
 import { Link, useNavigate } from "react-router-dom";
 import SwiperComponent from "../../ui/swiperComponent";
@@ -12,22 +12,40 @@ const RoomsPage = () => {
   const dispatch = useDispatch();
   const { rooms, isLoading, error } = useSelector((state) => state.rooms);
   const navigate = useNavigate();
-  const [sortedRooms, setSortedRooms] = useState([...rooms]);
-
-  const finalRooms = useMemo(() => {
-    return sortedRooms;
-  }, [sortedRooms]);
+  const [sortedRooms, setSortedRooms] = useState([]);
+  const [filters, setFilters] = useState({
+    standart: true,
+    standartPlus: true,
+    lux: true,
+  });
 
   useEffect(() => {
     dispatch(loadRooms());
   }, [dispatch]);
 
   useEffect(() => {
-    setSortedRooms([...rooms]);
-  }, [rooms]);
+    if (rooms) {
+      // console.log('1');
+      const f = rooms.filter((room) => {
+        if (room.type === "Standard" && !filters.standart) return false;
+        if (room.type === "Standard+" && !filters.standartPlus) return false;
+        if (room.type === "Lux" && !filters.lux) return false;
+        return true;
+      });
+      // console.log('2');
+      setSortedRooms(f);
+    }
+  }, [rooms, filters]);
+
+  const FiltrChange = (type) => {
+    setFilters((prevFilters) => ({
+      ...prevFilters,
+      [type]: !prevFilters[type],
+    }));
+  };
 
   const handleSort = (type) => {
-    const sorted = [...rooms].sort((a, b) => {
+    const sorted = [...sortedRooms].sort((a, b) => {
       if (a.type === type && b.type !== type) return -1;
       if (a.type !== type && b.type === type) return 1;
       return 0;
@@ -52,35 +70,72 @@ const RoomsPage = () => {
       <div>
         <MainBtn handle={handleClick} text={"Добавить номер"} />
       </div>
+
       <div className="sort-btn-container">
+        {/* <div className="filter-container"> */}
+        <div className="filtr-btn-container">
+          <label className="label-ceckbox">
+            Standart
+            <input
+              type="checkbox"
+              checked={filters.standart}
+              className="input-ceckbox"
+              onChange={() => FiltrChange("standart")}
+            />
+          </label>
+        </div>
+        <div className="filtr-btn-container">
+          <label className="label-ceckbox">
+            Standart+
+            <input
+              type="checkbox"
+              className="input-ceckbox"
+              checked={filters.standartPlus}
+              onChange={() => FiltrChange("standartPlus")}
+            />
+          </label>
+        </div>
+        <div className="filtr-btn-container">
+          <label className="label-ceckbox">
+            Lux
+            <input
+              type="checkbox"
+              className="input-ceckbox"
+              checked={filters.lux}
+              onChange={() => FiltrChange("lux")}
+            />
+          </label>
+        </div>
+        {/* </div> */}
         <SortBtn onSort={handleSort} />
       </div>
-      {finalRooms.map(
-        (o) =>
-          o && (
-            <div key={o._id} className="room">
-              {o.images ? (
-                <SwiperComponent
-                  objImages={o.images || []}
-                  clName={"room-images-swiper"}
-                />
-              ) : null}
-              {/* <SwiperComponent
-            objImages={o.images || []}
-            clName={"room-images-swiper"}
-          /> */}
-              <Link className="link-room" to={`/rooms/${o._id}`}>
-                <div className="room-info">
-                  <h1>{o.name}</h1>
-                  <p>{o.shortDescription}</p>
-                  <div className="room-place">{`Спальных мест: ${o.places}`}</div>
-                </div>
-                <div className="button-container">
-                  <MainBtn text={"Забронировать"} />
-                </div>
-              </Link>
-            </div>
-          )
+      {sortedRooms.length > 0 ? (
+        sortedRooms.map((r) => {
+          return (
+            r && (
+              <div key={r._id} className="room">
+                {r.images ? (
+                  <SwiperComponent
+                    objImages={r.images} // мб || []
+                    clName={"room-images-swiper"}
+                  />
+                ) : null}
+                <Link className="link-room" to={`/rooms/${r._id}`}>
+                  <div className="room-info">
+                    <h1>{r.name}</h1>
+                    <p>{r.shortDescription}</p>
+                    <div className="room-place">{`Спальных мест: ${r.places}`}</div>
+                  </div>
+                  <div className="button-container">
+                    <MainBtn text={"Забронировать"} />
+                  </div>
+                </Link>
+              </div>
+            )
+          );
+        })
+      ) : (
+        <h3>Нет подходящих номеров</h3>
       )}
     </div>
   );

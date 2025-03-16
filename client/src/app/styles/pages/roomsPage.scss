@@ -12,9 +12,23 @@
 }
 
 .sort-btn-container {
-  position: relative;
+  // position: relative;
   width: 100%;
   text-align: right;
+  justify-content: right;
+  display: flex;
+  // flex-direction: column;
+
+  .label-ceckbox {
+    font-size: 18px;
+    margin: 4px 6px;
+    display: flex;
+    flex-direction: column;
+  }
+  .input-ceckbox {
+    font-size: 22px;
+    padding: 2px;
+  }
 }
 
 .room {

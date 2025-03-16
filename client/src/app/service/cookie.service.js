@@ -10,7 +10,6 @@ export function setTokens({
   refreshToken,
   accessToken,
   userId,
-  admin = false,
   expiresIn = 3600,
 }) {
   const expiresDate = new Date().getTime() + expiresIn * 1000;
@@ -18,13 +17,11 @@ export function setTokens({
   Cookies.set(TOKEN_KEY, accessToken);
   Cookies.set(REFRESH_KEY, refreshToken);
   Cookies.set(EXPIRES_KEY, expiresDate);
-  Cookies.set(ADMIN_KEY, admin);
   console.log("Tokens set:", {
     userId,
     accessToken,
     refreshToken,
     expiresDate,
-    admin,
   });
 }
 
@@ -52,11 +49,6 @@ export function getUserId() {
   return Cookies.get(USERID_KEY);
 }
 
-export function isAdmin() {
-  console.log(Cookies.get(ADMIN_KEY));
-  return Cookies.get(ADMIN_KEY) === "true";
-}
-
 export function isTokenExpired() {
   const expiresDate = Cookies.get(EXPIRES_KEY);
   if (!expiresDate) return true;
@@ -78,7 +70,6 @@ const cookieService = {
   removeAuthData,
   isTokenExpired,
   clearExpiredTokens,
-  isAdmin,
 };
 
 export default cookieService;
