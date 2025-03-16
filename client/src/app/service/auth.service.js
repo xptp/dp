@@ -17,16 +17,7 @@ const authService = {
       admin,
       returnSecureToken: true,
     });
-    console.log("2", data);
-
-    // 1111111111111111111111111111
-    // cookieService.setTokens({
-    //   refreshToken: data.refreshToken,
-    //   accessToken: data.idToken,
-    //   userId: data.localId,
-    //   admin: admin,
-    //   expiresIn: data.expiresIn,
-    // });
+    // console.log("2", data);
 
     return data;
   },

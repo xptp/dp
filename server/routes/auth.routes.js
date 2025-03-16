@@ -22,8 +22,6 @@ router.post("/signUp", [
   async (req, res) => {
     // console.log("aaaaa", req.body);
     try {
-      // console.log(req.body);
-
       const errors = validationResult(req);
 
       if (!errors.isEmpty()) {
@@ -35,7 +33,6 @@ router.post("/signUp", [
           },
         });
       }
-      s;
       const { email, name, password } = req.body;
 
       const normalizedEmail = email.toLowerCase();
